@@ -1,0 +1,721 @@
+{
+ "about": "Typical yearly depreciation by model and registration year, read from Carma price-guide pages on 9-13 Nov 2026, when COE was S$139,001 (Cat A) and S$132,334 (Cat B). The app scales these to the COE price you enter.",
+ "reference_coe": {
+  "A": 139001,
+  "B": 132334,
+  "result_date": "2026-11-04"
+ },
+ "rows": [
+  {
+   "make": "Toyota",
+   "model": "Vios",
+   "reg_year": 2018,
+   "listings": 11,
+   "typical_depn": 15810.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Toyota",
+   "model": "Vios",
+   "reg_year": 2019,
+   "listings": 26,
+   "typical_depn": 15450.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Toyota",
+   "model": "Vios",
+   "reg_year": 2020,
+   "listings": 9,
+   "typical_depn": 15570.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Toyota",
+   "model": "Vios",
+   "reg_year": 2021,
+   "listings": 1,
+   "typical_depn": 15310.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Toyota",
+   "model": "Corolla Altis",
+   "reg_year": 2017,
+   "listings": 7,
+   "typical_depn": 17450.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Toyota",
+   "model": "Corolla Altis",
+   "reg_year": 2018,
+   "listings": 9,
+   "typical_depn": 16840.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Toyota",
+   "model": "Corolla Altis",
+   "reg_year": 2019,
+   "listings": 8,
+   "typical_depn": 17210.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Toyota",
+   "model": "Corolla Altis",
+   "reg_year": 2020,
+   "listings": 4,
+   "typical_depn": 17710.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Toyota",
+   "model": "Corolla Altis",
+   "reg_year": 2021,
+   "listings": 13,
+   "typical_depn": 17580.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Toyota",
+   "model": "Sienta",
+   "reg_year": 2018,
+   "listings": 17,
+   "typical_depn": 17220.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Toyota",
+   "model": "Sienta",
+   "reg_year": 2019,
+   "listings": 8,
+   "typical_depn": 17460.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Toyota",
+   "model": "Sienta",
+   "reg_year": 2020,
+   "listings": 5,
+   "typical_depn": 17780.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Toyota",
+   "model": "Sienta",
+   "reg_year": 2021,
+   "listings": 7,
+   "typical_depn": 17230.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Honda",
+   "model": "Jazz",
+   "reg_year": 2018,
+   "listings": 27,
+   "typical_depn": 15160.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Honda",
+   "model": "Jazz",
+   "reg_year": 2019,
+   "listings": 28,
+   "typical_depn": 15150.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Honda",
+   "model": "Jazz",
+   "reg_year": 2020,
+   "listings": 10,
+   "typical_depn": 15040.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Honda",
+   "model": "Jazz",
+   "reg_year": 2021,
+   "listings": 5,
+   "typical_depn": 16840.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Honda",
+   "model": "Fit",
+   "reg_year": 2018,
+   "listings": 10,
+   "typical_depn": 15290.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Honda",
+   "model": "Fit",
+   "reg_year": 2019,
+   "listings": 33,
+   "typical_depn": 14600.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Honda",
+   "model": "Fit",
+   "reg_year": 2020,
+   "listings": 23,
+   "typical_depn": 15210.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Honda",
+   "model": "Fit",
+   "reg_year": 2021,
+   "listings": 9,
+   "typical_depn": 15160.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Honda",
+   "model": "Civic",
+   "reg_year": 2017,
+   "listings": 15,
+   "typical_depn": 17720.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-09"
+  },
+  {
+   "make": "Honda",
+   "model": "Civic",
+   "reg_year": 2018,
+   "listings": 29,
+   "typical_depn": 16490.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-09"
+  },
+  {
+   "make": "Honda",
+   "model": "Civic",
+   "reg_year": 2019,
+   "listings": 22,
+   "typical_depn": 17070.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-09"
+  },
+  {
+   "make": "Honda",
+   "model": "Civic",
+   "reg_year": 2020,
+   "listings": 13,
+   "typical_depn": 17050.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-09"
+  },
+  {
+   "make": "Honda",
+   "model": "Shuttle",
+   "reg_year": 2017,
+   "listings": 4,
+   "typical_depn": 18070.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Honda",
+   "model": "Shuttle",
+   "reg_year": 2018,
+   "listings": 20,
+   "typical_depn": 16340.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Honda",
+   "model": "Shuttle",
+   "reg_year": 2019,
+   "listings": 17,
+   "typical_depn": 16120.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Honda",
+   "model": "Shuttle",
+   "reg_year": 2020,
+   "listings": 10,
+   "typical_depn": 16530.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Honda",
+   "model": "Shuttle",
+   "reg_year": 2021,
+   "listings": 10,
+   "typical_depn": 16670.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Mazda",
+   "model": "3",
+   "reg_year": 2017,
+   "listings": 15,
+   "typical_depn": 13700.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Mazda",
+   "model": "3",
+   "reg_year": 2018,
+   "listings": 27,
+   "typical_depn": 14260.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Mazda",
+   "model": "3",
+   "reg_year": 2019,
+   "listings": 8,
+   "typical_depn": 17400.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Mazda",
+   "model": "3",
+   "reg_year": 2020,
+   "listings": 10,
+   "typical_depn": 17310.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Mazda",
+   "model": "3",
+   "reg_year": 2021,
+   "listings": 12,
+   "typical_depn": 16940.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Nissan",
+   "model": "Note",
+   "reg_year": 2017,
+   "listings": 2,
+   "typical_depn": 11810.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Nissan",
+   "model": "Note",
+   "reg_year": 2018,
+   "listings": 7,
+   "typical_depn": 12600.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Nissan",
+   "model": "Note",
+   "reg_year": 2019,
+   "listings": 5,
+   "typical_depn": 13590.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Nissan",
+   "model": "Note",
+   "reg_year": 2020,
+   "listings": 3,
+   "typical_depn": 13850.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Nissan",
+   "model": "Note",
+   "reg_year": 2021,
+   "listings": 1,
+   "typical_depn": 15540.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Suzuki",
+   "model": "Swift",
+   "reg_year": 2018,
+   "listings": 4,
+   "typical_depn": 15070.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Suzuki",
+   "model": "Swift",
+   "reg_year": 2019,
+   "listings": 9,
+   "typical_depn": 14390.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Suzuki",
+   "model": "Swift",
+   "reg_year": 2020,
+   "listings": 8,
+   "typical_depn": 15370.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Suzuki",
+   "model": "Swift",
+   "reg_year": 2021,
+   "listings": 1,
+   "typical_depn": 15230.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Kia",
+   "model": "Cerato",
+   "reg_year": 2018,
+   "listings": 32,
+   "typical_depn": 13660.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Kia",
+   "model": "Cerato",
+   "reg_year": 2019,
+   "listings": 41,
+   "typical_depn": 15330.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Kia",
+   "model": "Cerato",
+   "reg_year": 2020,
+   "listings": 13,
+   "typical_depn": 15390.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Kia",
+   "model": "Cerato",
+   "reg_year": 2021,
+   "listings": 11,
+   "typical_depn": 15690.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Hyundai",
+   "model": "Avante",
+   "reg_year": 2019,
+   "listings": 39,
+   "typical_depn": 14950.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Hyundai",
+   "model": "Avante",
+   "reg_year": 2020,
+   "listings": 22,
+   "typical_depn": 17200.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Hyundai",
+   "model": "Avante",
+   "reg_year": 2021,
+   "listings": 21,
+   "typical_depn": 17020.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Mitsubishi",
+   "model": "Attrage",
+   "reg_year": 2018,
+   "listings": 11,
+   "typical_depn": 12040.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Mitsubishi",
+   "model": "Attrage",
+   "reg_year": 2019,
+   "listings": 7,
+   "typical_depn": 13000.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Mitsubishi",
+   "model": "Attrage",
+   "reg_year": 2020,
+   "listings": 3,
+   "typical_depn": 12790.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Mitsubishi",
+   "model": "Attrage",
+   "reg_year": 2021,
+   "listings": 5,
+   "typical_depn": 12510.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Lexus",
+   "model": "ES",
+   "reg_year": 2017,
+   "listings": 5,
+   "typical_depn": 21780.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Lexus",
+   "model": "ES",
+   "reg_year": 2018,
+   "listings": 18,
+   "typical_depn": 23240.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Lexus",
+   "model": "ES",
+   "reg_year": 2019,
+   "listings": 17,
+   "typical_depn": 22640.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Lexus",
+   "model": "ES",
+   "reg_year": 2020,
+   "listings": 10,
+   "typical_depn": 25510.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Lexus",
+   "model": "ES",
+   "reg_year": 2021,
+   "listings": 4,
+   "typical_depn": 23970.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Volkswagen",
+   "model": "Golf",
+   "reg_year": 2017,
+   "listings": 10,
+   "typical_depn": 15370.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Volkswagen",
+   "model": "Golf",
+   "reg_year": 2018,
+   "listings": 28,
+   "typical_depn": 15180.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Volkswagen",
+   "model": "Golf",
+   "reg_year": 2019,
+   "listings": 24,
+   "typical_depn": 15540.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Volkswagen",
+   "model": "Golf",
+   "reg_year": 2020,
+   "listings": 12,
+   "typical_depn": 17100.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Volkswagen",
+   "model": "Golf",
+   "reg_year": 2021,
+   "listings": 8,
+   "typical_depn": 24700.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "BYD",
+   "model": "Atto 3",
+   "reg_year": 2023,
+   "listings": 19,
+   "typical_depn": 18090.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "BYD",
+   "model": "Atto 3",
+   "reg_year": 2024,
+   "listings": 45,
+   "typical_depn": 17970.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "BYD",
+   "model": "Atto 3",
+   "reg_year": 2025,
+   "listings": 9,
+   "typical_depn": 17620.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "BYD",
+   "model": "Atto 3",
+   "reg_year": 2026,
+   "listings": 2,
+   "typical_depn": 19270.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "BYD",
+   "model": "Seal",
+   "reg_year": 2023,
+   "listings": 2,
+   "typical_depn": 20670.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "BYD",
+   "model": "Seal",
+   "reg_year": 2024,
+   "listings": 21,
+   "typical_depn": 19650.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "BYD",
+   "model": "Seal",
+   "reg_year": 2025,
+   "listings": 13,
+   "typical_depn": 19780.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "BYD",
+   "model": "Seal",
+   "reg_year": 2026,
+   "listings": 3,
+   "typical_depn": 19710.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "BYD",
+   "model": "e6",
+   "reg_year": 2021,
+   "listings": 3,
+   "typical_depn": 14580.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "BYD",
+   "model": "e6",
+   "reg_year": 2022,
+   "listings": 11,
+   "typical_depn": 13680.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "BYD",
+   "model": "e6",
+   "reg_year": 2023,
+   "listings": 13,
+   "typical_depn": 14220.0,
+   "basis": "price_guide",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Tesla",
+   "model": "Model 3",
+   "reg_year": 2024,
+   "listings": 2,
+   "typical_depn": 20250.0,
+   "basis": "two_listings",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Tesla",
+   "model": "Model Y",
+   "reg_year": 2024,
+   "listings": 1,
+   "typical_depn": 21300.0,
+   "basis": "one_listing",
+   "as_of": "2026-11-13"
+  },
+  {
+   "make": "Volkswagen",
+   "model": "ID.4",
+   "reg_year": 2024,
+   "listings": 1,
+   "typical_depn": 18320.0,
+   "basis": "one_listing",
+   "as_of": "2026-11-13"
+  }
+ ]
+}

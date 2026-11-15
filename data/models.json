@@ -1,0 +1,824 @@
+{
+ "about": "Reliability, parts, servicing, repair-reserve and insurance figures are judgement and estimates from the research report (Nov 2026), not measurements. coe_cat is the usual COE category of the common variant. Edit freely.",
+ "models": [
+  {
+   "make": "Toyota",
+   "model": "Vios",
+   "aliases": [
+    "toyota vios"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 1496.0,
+   "power_kw": null,
+   "coe_cat": "A",
+   "consumption": 6.2,
+   "maint_per_year": 850.0,
+   "repair_reserve": 300.0,
+   "insurance": 1100.0,
+   "reliability": 92.0,
+   "parts": 95.0,
+   "flag": "ok",
+   "notes": "1.5 naturally aspirated engine; CVT from the 2016 facelift. Simplest mainstream sedan to keep running."
+  },
+  {
+   "make": "Toyota",
+   "model": "Corolla Altis",
+   "aliases": [
+    "toyota corolla altis",
+    "toyota corolla",
+    "toyota altis"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 1598.0,
+   "power_kw": null,
+   "coe_cat": "A",
+   "consumption": 6.8,
+   "maint_per_year": 900.0,
+   "repair_reserve": 300.0,
+   "insurance": 1200.0,
+   "reliability": 92.0,
+   "parts": 95.0,
+   "flag": "ok",
+   "notes": "1.6 naturally aspirated engine with CVT. Very wide workshop and parts support."
+  },
+  {
+   "make": "Toyota",
+   "model": "Sienta",
+   "aliases": [
+    "toyota sienta"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 1496.0,
+   "power_kw": null,
+   "coe_cat": "A",
+   "consumption": 6.5,
+   "maint_per_year": 900.0,
+   "repair_reserve": 300.0,
+   "insurance": 1150.0,
+   "reliability": 90.0,
+   "parts": 92.0,
+   "flag": "ok",
+   "notes": "Same 1.5 engine family as the Vios; hybrid versions add a battery to check."
+  },
+  {
+   "make": "Toyota",
+   "model": "Prius",
+   "aliases": [
+    "toyota prius"
+   ],
+   "fuel": "hybrid",
+   "engine_cc": 1798.0,
+   "power_kw": null,
+   "coe_cat": "B",
+   "consumption": 4.5,
+   "maint_per_year": 900.0,
+   "repair_reserve": 500.0,
+   "insurance": 1250.0,
+   "reliability": 90.0,
+   "parts": 88.0,
+   "flag": "ok",
+   "notes": "Proven hybrid system; budget for the hybrid battery on an older car."
+  },
+  {
+   "make": "Toyota",
+   "model": "Camry",
+   "aliases": [
+    "toyota camry"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 2487.0,
+   "power_kw": null,
+   "coe_cat": "B",
+   "consumption": 8.0,
+   "maint_per_year": 1000.0,
+   "repair_reserve": 400.0,
+   "insurance": 1400.0,
+   "reliability": 92.0,
+   "parts": 90.0,
+   "flag": "ok",
+   "notes": "2.0 or 2.5 naturally aspirated with a conventional automatic."
+  },
+  {
+   "make": "Honda",
+   "model": "Jazz",
+   "aliases": [
+    "honda jazz"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 1317.0,
+   "power_kw": null,
+   "coe_cat": "A",
+   "consumption": 5.8,
+   "maint_per_year": 850.0,
+   "repair_reserve": 350.0,
+   "insurance": 1100.0,
+   "reliability": 88.0,
+   "parts": 90.0,
+   "flag": "ok",
+   "notes": "1.3 or 1.5 petrol with CVT; change CVT fluid on schedule."
+  },
+  {
+   "make": "Honda",
+   "model": "Fit",
+   "aliases": [
+    "honda fit"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 1317.0,
+   "power_kw": null,
+   "coe_cat": "A",
+   "consumption": 5.8,
+   "maint_per_year": 850.0,
+   "repair_reserve": 350.0,
+   "insurance": 1100.0,
+   "reliability": 88.0,
+   "parts": 88.0,
+   "flag": "ok",
+   "notes": "Parallel-import Jazz. Petrol CVT is the low-risk version; hybrids before 2020 use the i-DCD dual-clutch gearbox."
+  },
+  {
+   "make": "Honda",
+   "model": "Civic",
+   "aliases": [
+    "honda civic"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 1597.0,
+   "power_kw": null,
+   "coe_cat": "A",
+   "consumption": 6.8,
+   "maint_per_year": 950.0,
+   "repair_reserve": 350.0,
+   "insurance": 1300.0,
+   "reliability": 88.0,
+   "parts": 90.0,
+   "flag": "ok",
+   "notes": "1.6 naturally aspirated with CVT is the simple one; 1.5 turbo costs more to keep."
+  },
+  {
+   "make": "Honda",
+   "model": "Shuttle",
+   "aliases": [
+    "honda shuttle"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 1496.0,
+   "power_kw": null,
+   "coe_cat": "A",
+   "consumption": 5.8,
+   "maint_per_year": 900.0,
+   "repair_reserve": 450.0,
+   "insurance": 1150.0,
+   "reliability": 78.0,
+   "parts": 85.0,
+   "flag": "caution",
+   "notes": "Hybrid versions use the i-DCD dual-clutch gearbox, which needs actuator and gearbox fluid changes; petrol CVT is the lower-risk pick."
+  },
+  {
+   "make": "Honda",
+   "model": "Vezel",
+   "aliases": [
+    "honda vezel",
+    "honda hr-v",
+    "honda hrv"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 1496.0,
+   "power_kw": null,
+   "coe_cat": "A",
+   "consumption": 6.5,
+   "maint_per_year": 950.0,
+   "repair_reserve": 500.0,
+   "insurance": 1250.0,
+   "reliability": 76.0,
+   "parts": 85.0,
+   "flag": "caution",
+   "notes": "Hybrid versions before 2021 use the i-DCD dual-clutch gearbox; check service records for fluid changes."
+  },
+  {
+   "make": "Honda",
+   "model": "Freed",
+   "aliases": [
+    "honda freed"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 1496.0,
+   "power_kw": null,
+   "coe_cat": "A",
+   "consumption": 6.3,
+   "maint_per_year": 900.0,
+   "repair_reserve": 450.0,
+   "insurance": 1200.0,
+   "reliability": 78.0,
+   "parts": 85.0,
+   "flag": "caution",
+   "notes": "Hybrid versions use the i-DCD dual-clutch gearbox."
+  },
+  {
+   "make": "Mazda",
+   "model": "3",
+   "aliases": [
+    "mazda 3",
+    "mazda3",
+    "mazda axela"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 1496.0,
+   "power_kw": null,
+   "coe_cat": "A",
+   "consumption": 6.5,
+   "maint_per_year": 950.0,
+   "repair_reserve": 350.0,
+   "insurance": 1200.0,
+   "reliability": 88.0,
+   "parts": 85.0,
+   "flag": "ok",
+   "notes": "Skyactiv-G naturally aspirated engine with a conventional 6-speed automatic."
+  },
+  {
+   "make": "Mazda",
+   "model": "6",
+   "aliases": [
+    "mazda 6",
+    "mazda6"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 1998.0,
+   "power_kw": null,
+   "coe_cat": "B",
+   "consumption": 7.5,
+   "maint_per_year": 1050.0,
+   "repair_reserve": 400.0,
+   "insurance": 1350.0,
+   "reliability": 86.0,
+   "parts": 82.0,
+   "flag": "ok",
+   "notes": "Skyactiv-G 2.0 or 2.5 with a conventional 6-speed automatic."
+  },
+  {
+   "make": "Mazda",
+   "model": "2",
+   "aliases": [
+    "mazda 2",
+    "mazda2"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 1496.0,
+   "power_kw": null,
+   "coe_cat": "A",
+   "consumption": 5.8,
+   "maint_per_year": 900.0,
+   "repair_reserve": 350.0,
+   "insurance": 1100.0,
+   "reliability": 88.0,
+   "parts": 82.0,
+   "flag": "ok",
+   "notes": "Same drivetrain layout as the Mazda 3 1.5."
+  },
+  {
+   "make": "Nissan",
+   "model": "Note",
+   "aliases": [
+    "nissan note"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 1198.0,
+   "power_kw": null,
+   "coe_cat": "A",
+   "consumption": 5.5,
+   "maint_per_year": 900.0,
+   "repair_reserve": 450.0,
+   "insurance": 1100.0,
+   "reliability": 80.0,
+   "parts": 80.0,
+   "flag": "ok",
+   "notes": "1.2 petrol with CVT; e-Power hybrids from 2021."
+  },
+  {
+   "make": "Nissan",
+   "model": "Sylphy",
+   "aliases": [
+    "nissan sylphy"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 1598.0,
+   "power_kw": null,
+   "coe_cat": "A",
+   "consumption": 7.0,
+   "maint_per_year": 950.0,
+   "repair_reserve": 600.0,
+   "insurance": 1150.0,
+   "reliability": 74.0,
+   "parts": 80.0,
+   "flag": "caution",
+   "notes": "CVT needs fluid changes; budget a gearbox reserve."
+  },
+  {
+   "make": "Nissan",
+   "model": "Qashqai",
+   "aliases": [
+    "nissan qashqai"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 1197.0,
+   "power_kw": null,
+   "coe_cat": "A",
+   "consumption": 6.8,
+   "maint_per_year": 1100.0,
+   "repair_reserve": 800.0,
+   "insurance": 1300.0,
+   "reliability": 68.0,
+   "parts": 75.0,
+   "flag": "caution",
+   "notes": "Small turbo engine with CVT."
+  },
+  {
+   "make": "Mitsubishi",
+   "model": "Attrage",
+   "aliases": [
+    "mitsubishi attrage",
+    "mitsubishi space star"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 1193.0,
+   "power_kw": null,
+   "coe_cat": "A",
+   "consumption": 5.2,
+   "maint_per_year": 800.0,
+   "repair_reserve": 400.0,
+   "insurance": 1050.0,
+   "reliability": 82.0,
+   "parts": 80.0,
+   "flag": "ok",
+   "notes": "1.2 three-cylinder with CVT; basic and cheap to run."
+  },
+  {
+   "make": "Suzuki",
+   "model": "Swift",
+   "aliases": [
+    "suzuki swift"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 998.0,
+   "power_kw": null,
+   "coe_cat": "A",
+   "consumption": 5.5,
+   "maint_per_year": 900.0,
+   "repair_reserve": 400.0,
+   "insurance": 1100.0,
+   "reliability": 82.0,
+   "parts": 75.0,
+   "flag": "ok",
+   "notes": "1.0 turbo or 1.2 mild hybrid; fewer specialist workshops than Toyota or Honda."
+  },
+  {
+   "make": "Kia",
+   "model": "Cerato",
+   "aliases": [
+    "kia cerato"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 1591.0,
+   "power_kw": null,
+   "coe_cat": "A",
+   "consumption": 7.0,
+   "maint_per_year": 900.0,
+   "repair_reserve": 400.0,
+   "insurance": 1200.0,
+   "reliability": 84.0,
+   "parts": 82.0,
+   "flag": "ok",
+   "notes": "1.6 naturally aspirated with a conventional 6-speed automatic."
+  },
+  {
+   "make": "Hyundai",
+   "model": "Avante",
+   "aliases": [
+    "hyundai avante",
+    "hyundai elantra"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 1591.0,
+   "power_kw": null,
+   "coe_cat": "A",
+   "consumption": 6.8,
+   "maint_per_year": 900.0,
+   "repair_reserve": 400.0,
+   "insurance": 1200.0,
+   "reliability": 84.0,
+   "parts": 82.0,
+   "flag": "ok",
+   "notes": "1.6 naturally aspirated; conventional automatic, CVT-type on the 2020 model."
+  },
+  {
+   "make": "Perodua",
+   "model": "Myvi",
+   "aliases": [
+    "perodua myvi"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 1496.0,
+   "power_kw": null,
+   "coe_cat": "A",
+   "consumption": 6.0,
+   "maint_per_year": 800.0,
+   "repair_reserve": 400.0,
+   "insurance": 1100.0,
+   "reliability": 80.0,
+   "parts": 70.0,
+   "flag": "ok",
+   "notes": "Toyota-derived 1.5 engine with a conventional automatic; parts support thinner in Singapore."
+  },
+  {
+   "make": "Lexus",
+   "model": "ES",
+   "aliases": [
+    "lexus es"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 2487.0,
+   "power_kw": null,
+   "coe_cat": "B",
+   "consumption": 8.0,
+   "maint_per_year": 1400.0,
+   "repair_reserve": 500.0,
+   "insurance": 1900.0,
+   "reliability": 92.0,
+   "parts": 85.0,
+   "flag": "ok",
+   "notes": "Camry-based; reliable but depreciation is high."
+  },
+  {
+   "make": "Lexus",
+   "model": "IS",
+   "aliases": [
+    "lexus is"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 1998.0,
+   "power_kw": null,
+   "coe_cat": "B",
+   "consumption": 8.5,
+   "maint_per_year": 1400.0,
+   "repair_reserve": 600.0,
+   "insurance": 1900.0,
+   "reliability": 88.0,
+   "parts": 82.0,
+   "flag": "ok",
+   "notes": "Reliable; turbo 2.0 or older V6."
+  },
+  {
+   "make": "Volkswagen",
+   "model": "Golf",
+   "aliases": [
+    "volkswagen golf",
+    "vw golf"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 1395.0,
+   "power_kw": null,
+   "coe_cat": "A",
+   "consumption": 6.0,
+   "maint_per_year": 1500.0,
+   "repair_reserve": 1500.0,
+   "insurance": 1400.0,
+   "reliability": 60.0,
+   "parts": 70.0,
+   "flag": "caution",
+   "notes": "1.0 and 1.4 TSI use the 7-speed dry-clutch DSG; mechatronic and clutch-pack repairs are common around years 6 to 8."
+  },
+  {
+   "make": "Volkswagen",
+   "model": "Sharan",
+   "aliases": [
+    "volkswagen sharan"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 1984.0,
+   "power_kw": null,
+   "coe_cat": "B",
+   "consumption": 9.0,
+   "maint_per_year": 1900.0,
+   "repair_reserve": 1800.0,
+   "insurance": 1600.0,
+   "reliability": 55.0,
+   "parts": 65.0,
+   "flag": "caution",
+   "notes": "2.0 TSI with wet-clutch DSG; heavy MPV with higher running costs."
+  },
+  {
+   "make": "Mercedes-Benz",
+   "model": "C-Class",
+   "aliases": [
+    "mercedes-benz c-class",
+    "mercedes-benz c180",
+    "mercedes-benz c200",
+    "mercedes c180"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 1595.0,
+   "power_kw": null,
+   "coe_cat": "B",
+   "consumption": 7.5,
+   "maint_per_year": 1900.0,
+   "repair_reserve": 1500.0,
+   "insurance": 1900.0,
+   "reliability": 62.0,
+   "parts": 72.0,
+   "flag": "caution",
+   "notes": "Higher servicing and parts costs; budget a larger repair reserve."
+  },
+  {
+   "make": "Mercedes-Benz",
+   "model": "E-Class",
+   "aliases": [
+    "mercedes-benz e-class",
+    "mercedes-benz e250",
+    "mercedes-benz e200"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 1991.0,
+   "power_kw": null,
+   "coe_cat": "B",
+   "consumption": 8.5,
+   "maint_per_year": 2100.0,
+   "repair_reserve": 1800.0,
+   "insurance": 2200.0,
+   "reliability": 60.0,
+   "parts": 72.0,
+   "flag": "caution",
+   "notes": "Higher servicing and parts costs; budget a larger repair reserve."
+  },
+  {
+   "make": "BMW",
+   "model": "X1",
+   "aliases": [
+    "bmw x1"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 1499.0,
+   "power_kw": null,
+   "coe_cat": "B",
+   "consumption": 7.0,
+   "maint_per_year": 1800.0,
+   "repair_reserve": 1500.0,
+   "insurance": 1800.0,
+   "reliability": 60.0,
+   "parts": 70.0,
+   "flag": "caution",
+   "notes": "Three-cylinder turbo; higher servicing and parts costs."
+  },
+  {
+   "make": "Volvo",
+   "model": "S60",
+   "aliases": [
+    "volvo s60"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 1498.0,
+   "power_kw": null,
+   "coe_cat": "B",
+   "consumption": 7.0,
+   "maint_per_year": 1800.0,
+   "repair_reserve": 1500.0,
+   "insurance": 1700.0,
+   "reliability": 58.0,
+   "parts": 60.0,
+   "flag": "caution",
+   "notes": "Fewer independent specialists; higher parts costs."
+  },
+  {
+   "make": "Ford",
+   "model": "Focus",
+   "aliases": [
+    "ford focus"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 999.0,
+   "power_kw": null,
+   "coe_cat": "A",
+   "consumption": 6.0,
+   "maint_per_year": 1800.0,
+   "repair_reserve": 1500.0,
+   "insurance": 1400.0,
+   "reliability": 52.0,
+   "parts": 55.0,
+   "flag": "caution",
+   "notes": "Small turbo engine; low price reflects repair risk."
+  },
+  {
+   "make": "Opel",
+   "model": "Astra",
+   "aliases": [
+    "opel astra"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 999.0,
+   "power_kw": null,
+   "coe_cat": "A",
+   "consumption": 6.0,
+   "maint_per_year": 1800.0,
+   "repair_reserve": 1500.0,
+   "insurance": 1400.0,
+   "reliability": 52.0,
+   "parts": 55.0,
+   "flag": "caution",
+   "notes": "Small turbo engine; thin parts and workshop support."
+  },
+  {
+   "make": "Citroen",
+   "model": "C4",
+   "aliases": [
+    "citroen c4"
+   ],
+   "fuel": "petrol",
+   "engine_cc": 1199.0,
+   "power_kw": null,
+   "coe_cat": "A",
+   "consumption": 6.0,
+   "maint_per_year": 1800.0,
+   "repair_reserve": 1800.0,
+   "insurance": 1400.0,
+   "reliability": 50.0,
+   "parts": 50.0,
+   "flag": "caution",
+   "notes": "1.2 turbo; thin parts and workshop support."
+  },
+  {
+   "make": "BYD",
+   "model": "Atto 3",
+   "aliases": [
+    "byd atto 3",
+    "byd atto3"
+   ],
+   "fuel": "electric",
+   "engine_cc": null,
+   "power_kw": 150.0,
+   "coe_cat": "B",
+   "consumption": 16.0,
+   "maint_per_year": 450.0,
+   "repair_reserve": 300.0,
+   "insurance": 1800.0,
+   "reliability": 78.0,
+   "parts": 65.0,
+   "flag": "ok",
+   "notes": "LFP Blade battery; authorised servicing only, few independent EV specialists."
+  },
+  {
+   "make": "BYD",
+   "model": "Seal",
+   "aliases": [
+    "byd seal"
+   ],
+   "fuel": "electric",
+   "engine_cc": null,
+   "power_kw": 150.0,
+   "coe_cat": "B",
+   "consumption": 16.5,
+   "maint_per_year": 500.0,
+   "repair_reserve": 300.0,
+   "insurance": 1900.0,
+   "reliability": 76.0,
+   "parts": 62.0,
+   "flag": "ok",
+   "notes": "LFP Blade battery; newer model with a short track record in Singapore."
+  },
+  {
+   "make": "BYD",
+   "model": "Sealion 7",
+   "aliases": [
+    "byd sealion",
+    "byd sealion 7"
+   ],
+   "fuel": "electric",
+   "engine_cc": null,
+   "power_kw": 230.0,
+   "coe_cat": "B",
+   "consumption": 19.0,
+   "maint_per_year": 550.0,
+   "repair_reserve": 300.0,
+   "insurance": 2100.0,
+   "reliability": 74.0,
+   "parts": 60.0,
+   "flag": "ok",
+   "notes": "Newer model with a short track record."
+  },
+  {
+   "make": "BYD",
+   "model": "Dolphin",
+   "aliases": [
+    "byd dolphin"
+   ],
+   "fuel": "electric",
+   "engine_cc": null,
+   "power_kw": 70.0,
+   "coe_cat": "A",
+   "consumption": 14.0,
+   "maint_per_year": 450.0,
+   "repair_reserve": 300.0,
+   "insurance": 1700.0,
+   "reliability": 78.0,
+   "parts": 65.0,
+   "flag": "ok",
+   "notes": "LFP Blade battery; smallest BYD."
+  },
+  {
+   "make": "BYD",
+   "model": "e6",
+   "aliases": [
+    "byd e6"
+   ],
+   "fuel": "electric",
+   "engine_cc": null,
+   "power_kw": 70.0,
+   "coe_cat": "A",
+   "consumption": 17.0,
+   "maint_per_year": 500.0,
+   "repair_reserve": 400.0,
+   "insurance": 1700.0,
+   "reliability": 74.0,
+   "parts": 65.0,
+   "flag": "caution",
+   "notes": "Many are ex-fleet or private-hire cars; check usage history and battery health."
+  },
+  {
+   "make": "Tesla",
+   "model": "Model 3",
+   "aliases": [
+    "tesla model 3"
+   ],
+   "fuel": "electric",
+   "engine_cc": null,
+   "power_kw": 208.0,
+   "coe_cat": "B",
+   "consumption": 14.0,
+   "maint_per_year": 500.0,
+   "repair_reserve": 500.0,
+   "insurance": 2200.0,
+   "reliability": 80.0,
+   "parts": 65.0,
+   "flag": "ok",
+   "notes": "Efficient; servicing and parts through Tesla only."
+  },
+  {
+   "make": "Tesla",
+   "model": "Model Y",
+   "aliases": [
+    "tesla model y"
+   ],
+   "fuel": "electric",
+   "engine_cc": null,
+   "power_kw": 220.0,
+   "coe_cat": "B",
+   "consumption": 15.5,
+   "maint_per_year": 550.0,
+   "repair_reserve": 500.0,
+   "insurance": 2300.0,
+   "reliability": 78.0,
+   "parts": 65.0,
+   "flag": "ok",
+   "notes": "Servicing and parts through Tesla only."
+  },
+  {
+   "make": "Volkswagen",
+   "model": "ID.4",
+   "aliases": [
+    "volkswagen id.4",
+    "volkswagen id4",
+    "volkswagen id 4",
+    "vw id.4"
+   ],
+   "fuel": "electric",
+   "engine_cc": null,
+   "power_kw": 150.0,
+   "coe_cat": "B",
+   "consumption": 17.0,
+   "maint_per_year": 700.0,
+   "repair_reserve": 700.0,
+   "insurance": 2000.0,
+   "reliability": 70.0,
+   "parts": 60.0,
+   "flag": "ok",
+   "notes": "Short track record in Singapore; software faults reported in other markets."
+  },
+  {
+   "make": "Porsche",
+   "model": "Taycan",
+   "aliases": [
+    "porsche taycan"
+   ],
+   "fuel": "electric",
+   "engine_cc": null,
+   "power_kw": 300.0,
+   "coe_cat": "B",
+   "consumption": 22.0,
+   "maint_per_year": 2500.0,
+   "repair_reserve": 3000.0,
+   "insurance": 4500.0,
+   "reliability": 60.0,
+   "parts": 50.0,
+   "flag": "avoid",
+   "notes": "Running costs and capital at risk far exceed any mainstream option; not a cost-minimising choice."
+  }
+ ]
+}

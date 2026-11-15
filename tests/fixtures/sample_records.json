@@ -1,0 +1,286 @@
+[
+ {
+  "id": 1546357,
+  "link": "https://www.sgcarmart.com/used-cars/info/mitsubishi-attrage-12a-1546357/?dl=3283",
+  "dealer_code": 3283,
+  "car_model": "Mitsubishi Attrage 1.2A",
+  "price": 16000,
+  "drive_range": "N.A.",
+  "depreciation": 10640,
+  "registration_date": "21-Feb-2018",
+  "first_registration_date": null,
+  "vehicle_scheme": null,
+  "engine_capacity": "1,193 cc",
+  "description": "Seller description removed from this test sample.",
+  "category": "",
+  "status": "a",
+  "date": "12-Nov-2026",
+  "auction_closing_time": null,
+  "type": "Sedan",
+  "mileage": 210000,
+  "fuel_type": "Petrol",
+  "transmission": "Auto",
+  "owners": "1 Owner",
+  "priority": 16,
+  "ad_type": "p",
+  "image": null,
+  "dealer_lead": {
+   "dealer_code": 3283,
+   "name": "Platinum Motoring",
+   "package": "a",
+   "is_ucdp": 1,
+   "is_basic": 0
+  },
+  "tag": "Premium Ad",
+  "sale_status": null,
+  "sta_grade": null,
+  "view_similar_link": "https://www.sgcarmart.com/used-cars/info/mitsubishi-attrage-12a-1546357/similar/?dl=3283",
+  "buysafe": {
+   "is_buysafe": false,
+   "buysafe_link": "https://www.sgcarmart.com/used_cars/buysafe/index.php"
+  },
+  "star_ad": {
+   "is_star_ad": false,
+   "star_ad_description": null,
+   "star_ads_label": null
+  },
+  "spotlight": {
+   "is_spotlight": false,
+   "spotlight_description": null,
+   "spotlight_ads_label": null
+  },
+  "warranty": null,
+  "instalment": {
+   "installment": 828,
+   "max_ltv_ratio": 70
+  },
+  "additional_statuses": {
+   "is_imported_used": false,
+   "is_eligible_for_parf_rebate": false,
+   "has_10_years_coe": false
+  },
+  "promo_labels": [],
+  "coeLeft": "1y 3m",
+  "inspection_grade": "",
+  "buysafe_label_image": null,
+  "deals": {
+   "super_deal": []
+  },
+  "make": "Mitsubishi",
+  "model": "Attrage",
+  "promoted_with": null
+ },
+ {
+  "id": 1550782,
+  "link": "https://www.sgcarmart.com/used-cars/info/nissan-note-12a-1550782/?dl=4833",
+  "dealer_code": 4833,
+  "car_model": "Nissan Note 1.2A",
+  "price": 17997,
+  "drive_range": "N.A.",
+  "depreciation": 12030,
+  "registration_date": "28-Feb-2018",
+  "first_registration_date": null,
+  "vehicle_scheme": null,
+  "engine_capacity": "1,198 cc",
+  "description": "Seller description removed from this test sample.",
+  "category": "",
+  "status": "a",
+  "date": "12-Nov-2026",
+  "auction_closing_time": null,
+  "type": "Hatchback",
+  "mileage": 136000,
+  "fuel_type": "Petrol",
+  "transmission": "Auto",
+  "owners": "2 Owners",
+  "priority": 26,
+  "ad_type": "p",
+  "image": null,
+  "dealer_lead": {
+   "dealer_code": 2984,
+   "name": "SG Car Choice Pte Ltd",
+   "package": "a",
+   "is_ucdp": 1,
+   "is_basic": 0
+  },
+  "tag": "Premium Ad",
+  "sale_status": null,
+  "sta_grade": null,
+  "view_similar_link": "https://www.sgcarmart.com/used-cars/info/nissan-note-12a-1550782/similar/?dl=4833",
+  "buysafe": {
+   "is_buysafe": false,
+   "buysafe_link": "https://www.sgcarmart.com/used_cars/buysafe/index.php"
+  },
+  "star_ad": {
+   "is_star_ad": false,
+   "star_ad_description": null,
+   "star_ads_label": null
+  },
+  "spotlight": {
+   "is_spotlight": false,
+   "spotlight_description": null,
+   "spotlight_ads_label": null
+  },
+  "warranty": null,
+  "instalment": {
+   "installment": 931,
+   "max_ltv_ratio": 70
+  },
+  "additional_statuses": {
+   "is_imported_used": false,
+   "is_eligible_for_parf_rebate": false,
+   "has_10_years_coe": false
+  },
+  "promo_labels": [],
+  "coeLeft": "1y 3m",
+  "inspection_grade": "",
+  "buysafe_label_image": null,
+  "deals": {
+   "super_deal": []
+  },
+  "make": "Nissan",
+  "model": "Note",
+  "promoted_with": null
+ },
+ {
+  "id": 1540572,
+  "link": "https://www.sgcarmart.com/used-cars/info/mazda-2-hb-15a-1540572/?dl=3758",
+  "dealer_code": 3758,
+  "car_model": "Mazda 2 HB 1.5A SP",
+  "price": 18000,
+  "drive_range": "N.A.",
+  "depreciation": 13700,
+  "registration_date": "02-Jan-2018",
+  "first_registration_date": null,
+  "vehicle_scheme": null,
+  "engine_capacity": "1,496 cc",
+  "description": "Seller description removed from this test sample.",
+  "category": "",
+  "status": "a",
+  "date": "02-Oct-2026",
+  "auction_closing_time": null,
+  "type": "Hatchback",
+  "mileage": 97000,
+  "fuel_type": "Petrol",
+  "transmission": "Auto",
+  "owners": "2 Owners",
+  "priority": 31,
+  "ad_type": "p",
+  "image": null,
+  "dealer_lead": {
+   "dealer_code": 3758,
+   "name": "First Motoring",
+   "package": "a",
+   "is_ucdp": 1,
+   "is_basic": 0
+  },
+  "tag": "Premium Ad",
+  "sale_status": null,
+  "sta_grade": null,
+  "view_similar_link": "https://www.sgcarmart.com/used-cars/info/mazda-2-hb-15a-1540572/similar/?dl=3758",
+  "buysafe": {
+   "is_buysafe": false,
+   "buysafe_link": "https://www.sgcarmart.com/used_cars/buysafe/index.php"
+  },
+  "star_ad": {
+   "is_star_ad": false,
+   "star_ad_description": null,
+   "star_ads_label": null
+  },
+  "spotlight": {
+   "is_spotlight": false,
+   "spotlight_description": null,
+   "spotlight_ads_label": null
+  },
+  "warranty": null,
+  "instalment": {
+   "installment": 1081,
+   "max_ltv_ratio": 70
+  },
+  "additional_statuses": {
+   "is_imported_used": false,
+   "is_eligible_for_parf_rebate": false,
+   "has_10_years_coe": false
+  },
+  "promo_labels": [],
+  "coeLeft": "1y 1m",
+  "inspection_grade": "",
+  "buysafe_label_image": null,
+  "deals": {
+   "super_deal": []
+  },
+  "make": "Mazda",
+  "model": "2",
+  "promoted_with": null
+ },
+ {
+  "id": 1551168,
+  "link": "https://www.sgcarmart.com/used-cars/info/suzuki-every-turbo-1551168/?dl=1005",
+  "dealer_code": 1005,
+  "car_model": "Suzuki Every Turbo",
+  "price": 15800,
+  "drive_range": "N.A.",
+  "depreciation": 10500,
+  "registration_date": "17-May-2018",
+  "first_registration_date": null,
+  "vehicle_scheme": null,
+  "engine_capacity": "658 cc",
+  "description": "Seller description removed from this test sample.",
+  "category": "",
+  "status": "a",
+  "date": "13-Nov-2026",
+  "auction_closing_time": null,
+  "type": "Van",
+  "mileage": 75000,
+  "fuel_type": "Petrol",
+  "transmission": "Auto",
+  "owners": "2 Owners",
+  "priority": 19,
+  "ad_type": "n",
+  "image": null,
+  "dealer_lead": {
+   "dealer_code": 1005,
+   "name": "Island Car Trading Pte Ltd",
+   "package": "a",
+   "is_ucdp": 0,
+   "is_basic": 0
+  },
+  "tag": "",
+  "sale_status": null,
+  "sta_grade": null,
+  "view_similar_link": "https://www.sgcarmart.com/used-cars/info/suzuki-every-turbo-1551168/similar/?dl=1005",
+  "buysafe": {
+   "is_buysafe": false,
+   "buysafe_link": "https://www.sgcarmart.com/used_cars/buysafe/index.php"
+  },
+  "star_ad": {
+   "is_star_ad": false,
+   "star_ad_description": null,
+   "star_ads_label": null
+  },
+  "spotlight": {
+   "is_spotlight": false,
+   "spotlight_description": null,
+   "spotlight_ads_label": null
+  },
+  "warranty": null,
+  "instalment": {
+   "installment": 875,
+   "max_ltv_ratio": 90
+  },
+  "additional_statuses": {
+   "is_imported_used": false,
+   "is_eligible_for_parf_rebate": false,
+   "has_10_years_coe": false
+  },
+  "promo_labels": [],
+  "coeLeft": "1y 6m",
+  "inspection_grade": "",
+  "buysafe_label_image": null,
+  "deals": {
+   "super_deal": []
+  },
+  "make": "Suzuki",
+  "model": "Every",
+  "promoted_with": null
+ }
+]

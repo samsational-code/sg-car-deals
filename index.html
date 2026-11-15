@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SG Car Deals</title>
+<meta name="description" content="SGCarMart used-car listings rated against the current COE price.">
+<meta name="theme-color" content="#f4f1ea" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#15171a" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-row">
+    <div>
+      <h1>SG Car Deals</h1>
+      <p class="sub" id="scan-line">Loading listings…</p>
+    </div>
+    <div class="top-actions">
+      <button id="refresh" class="btn" type="button">Refresh</button>
+      <a id="run-scan" class="btn ghost" hidden target="_blank" rel="noopener">Run a new scan</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div id="banner" class="banner" hidden></div>
+
+  <section class="coe" aria-labelledby="coe-h">
+    <div class="coe-head">
+      <h2 id="coe-h">Today's 10-year COE price</h2>
+      <button id="coe-reset" class="link" type="button">Reset to 4 Nov 2026 results</button>
+    </div>
+    <div class="coe-grid">
+      <label class="coe-box">
+        <span class="coe-name">Category A <small>up to 1,600cc and 97 kW</small></span>
+        <span class="money-input"><span>S$</span><input id="coeA" type="number" inputmode="numeric" min="10000" max="400000" step="1"></span>
+        <span class="parity" id="parityA"></span>
+      </label>
+      <label class="coe-box">
+        <span class="coe-name">Category B <small>bigger or more powerful</small></span>
+        <span class="money-input"><span>S$</span><input id="coeB" type="number" inputmode="numeric" min="10000" max="400000" step="1"></span>
+        <span class="parity" id="parityB"></span>
+      </label>
+    </div>
+    <p class="hint">Type the latest bidding result and every car is re-rated at once. Parity (COE ÷ 10 years) is only a yardstick: each car is judged against its own model's usual depreciation at this COE price.</p>
+  </section>
+
+  <section aria-label="Listings">
+    <div class="chips" id="chips" role="group" aria-label="Filter by rating"></div>
+    <div class="controls">
+      <input id="q" type="search" placeholder="Search model or dealer" aria-label="Search model or dealer">
+      <label class="sel">Sort
+        <select id="sort">
+          <option value="score">Best deal first</option>
+          <option value="gap">Furthest below fair value</option>
+          <option value="depn">Lowest depreciation</option>
+          <option value="tco">Lowest total cost per year</option>
+          <option value="price">Lowest price</option>
+          <option value="new">Newest listing</option>
+        </select>
+      </label>
+      <label class="check"><input id="hide-low" type="checkbox"> Hide low-confidence ratings</label>
+    </div>
+    <p class="count" id="count"></p>
+    <div id="list" class="list"></div>
+  </section>
+
+  <details class="panel" id="settings">
+    <summary>Your assumptions</summary>
+    <div class="form">
+      <label>Return you could earn on the money instead
+        <span class="row"><span class="unit-input"><input id="s-rate" type="number" step="0.5" min="0" max="20"><span>%</span></span>
+        <button type="button" class="btn small" data-rate="3">3%</button><button type="button" class="btn small" data-rate="8">8%</button></span></label>
+      <label>Distance driven a year <span class="unit-input"><input id="s-km" type="number" step="500" min="0"><span>km</span></span></label>
+      <label>Petrol <span class="unit-input"><span>S$</span><input id="s-petrol" type="number" step="0.05" min="0"><span>/ litre</span></span></label>
+      <label>Electricity <span class="unit-input"><span>S$</span><input id="s-elec" type="number" step="0.05" min="0"><span>/ kWh</span></span></label>
+      <label>ERP a year <span class="unit-input"><span>S$</span><input id="s-erp" type="number" step="10" min="0"></span></label>
+      <label>Parking a year <span class="unit-input"><span>S$</span><input id="s-park" type="number" step="10" min="0"></span></label>
+      <label>How much of a COE move feeds into used-car prices
+        <span class="unit-input"><input id="s-pass" type="number" step="5" min="0" max="150"><span>%</span></span>
+        <small>An assumption. At 100% a 10% fall in COE lowers every benchmark by 10%. It has no effect while the COE boxes hold the 4 Nov 2026 results.</small></label>
+      <button type="button" class="link" id="s-reset">Reset assumptions</button>
+    </div>
+  </details>
+
+  <details class="panel" id="import">
+    <summary>Add listings from a saved page</summary>
+    <p>Use this if the automatic scan is refused, or to add a search by hand. On SGCarMart, open a used-car search, press Ctrl+S (Cmd+S on a Mac) and save the page. Then choose the saved .html file here. Listings added this way stay on this device only and drop off after 3 days unless you add the page again.</p>
+    <input id="files" type="file" accept=".html,.htm,text/html" multiple>
+    <p id="import-msg" class="hint" role="status"></p>
+    <button type="button" class="link" id="import-clear" hidden>Remove listings added by hand</button>
+  </details>
+
+  <details class="panel">
+    <summary>How the rating works</summary>
+    <ol class="method">
+      <li><b>Depreciation.</b> A used car's price is mostly prepaid depreciation: (price − what comes back as PARF when the COE ends) ÷ years of COE left. The app uses the figure SGCarMart shows.</li>
+      <li><b>Fair depreciation.</b> What that model and registration year normally depreciates at, from price guides read on 13 Nov 2026, scaled to the COE price you enter. When five or more similar cars are listed now, their median counts for half.</li>
+      <li><b>Fair value and maximum price.</b> Fair value = PARF value + fair depreciation × years left. Maximum price uses depreciation 5% under the norm.</li>
+      <li><b>Score, 0 to 100.</b> Price against fair value 30, depreciation 15, reliability 15, servicing and repairs 10, COE left 10 (1.5 to 3 years scores best), parts 5, PARF 5, mileage 5, and battery cover 5 for electric cars.</li>
+      <li><b>Ratings.</b> Exceptional: score 80+, at least 8% under fair value, a known model. Attractive: score 70+ and not above fair value. Overpriced: 8% or more above fair value. Avoid: a model flagged for reliability, or an electric car out of battery warranty.</li>
+    </ol>
+    <p class="hint">Reliability, servicing, repair and insurance figures are estimates from the research, not measurements. A listing shows engine size but not power, so the COE category is an estimate for turbo cars near 1,600cc. Vans, trucks and buses are not rated. A good rating is a reason to view a car, not to buy it: check the service history, accident record and outstanding loan first.</p>
+  </details>
+
+  <footer>
+    <p>Listings and figures come from <a href="https://www.sgcarmart.com/used-cars" target="_blank" rel="noopener">sgcarmart.com</a>; each car links to its page there. Personal tool, not affiliated with SGCarMart. Not financial advice.</p>
+  </footer>
+</main>
+
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>

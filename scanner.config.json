@@ -1,0 +1,8 @@
+{
+  "max_pages_per_search": 10,
+  "max_requests_per_run": 30,
+  "delay_seconds": 8,
+  "page_param": "page",
+  "keep_days": 14,
+  "timeout_seconds": 30
+}

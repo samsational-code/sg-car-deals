@@ -1,0 +1,12 @@
+# One SGCarMart used-car search per line. The daily scan reads each one.
+#
+# How to make a line:
+#   1. Open https://www.sgcarmart.com/used-cars/listing in your browser.
+#   2. Set the filters you want. Sort by "Depreciation (Lowest)".
+#   3. Copy the whole address from the address bar and paste it below.
+#
+# Lines starting with # are ignored. Only www.sgcarmart.com/used-cars/listing addresses are read.
+#
+# Starter search: under S$50,000, depreciation under S$16,000 a year, registered 2018-2019,
+# lowest depreciation first. It includes vans; replace it with your own (see README, "Choosing a search").
+https://www.sgcarmart.com/used-cars/listing?pr2=50000&dp2=16000&fr=2018&to=2019&ord=DEP_ASC

@@ -1,0 +1,12 @@
+{
+  "name": "sg-car-deals",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Personal dashboard that rates SGCarMart used-car listings against the current COE price.",
+  "scripts": {
+    "scan": "node scripts/fetch.mjs",
+    "test": "node --test"
+  },
+  "engines": { "node": ">=20" }
+}
