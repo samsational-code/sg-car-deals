@@ -1,0 +1,36 @@
+name: Scan SGCarMart
+
+on:
+  schedule:
+    - cron: "17 23 * * *"      # 07:17 Singapore time, every day
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scan
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check the page reader still works
+        run: node --test
+      - name: Read the searches
+        run: node scripts/fetch.mjs
+      - name: Save results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/listings.json data/status.json
+          git diff --cached --quiet || git commit -m "Scan $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push
+      - name: Fail the run if the scan read nothing
+        run: node scripts/fetch.mjs --check-status
