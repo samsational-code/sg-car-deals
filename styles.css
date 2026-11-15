@@ -125,3 +125,8 @@ footer { color: var(--muted); font-size: 0.78rem; margin-top: 24px; }
   .money-input input { font-size: 1.15rem; }
   .nums dd { font-size: 0.86rem; }
 }
+
+.step { font-size: 0.92rem; margin-top: 16px; }
+.panel input[type="password"], .panel input[type="text"] { border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; background: var(--bg); font-weight: 400; width: 100%; min-width: 0; }
+.btn.drag { cursor: grab; display: inline-block; padding: 4px 12px; margin: 0 4px; }
+.panel .row { margin-top: 12px; }

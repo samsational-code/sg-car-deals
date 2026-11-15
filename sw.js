@@ -1,7 +1,7 @@
 // Offline support. The app's own files are served from a cache and refreshed in the background;
 // the data files always come from the network when there is one, so "Refresh" shows the latest scan.
-const VERSION = 'v1';
-const SHELL = ['./', 'index.html', 'styles.css', 'app.js', 'lib/engine.js', 'lib/parse.js', 'manifest.webmanifest', 'icons/icon.svg', 'icons/icon-192.png'];
+const VERSION = 'v2';
+const SHELL = ['./', 'index.html', 'styles.css', 'app.js', 'lib/engine.js', 'lib/parse.js', 'lib/store.js', 'lib/transfer.js', 'lib/capture.js', 'lib/bookmarklet.js', 'manifest.webmanifest', 'icons/icon.svg', 'icons/icon-192.png'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open('shell-' + VERSION).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));

@@ -21,7 +21,7 @@
     </div>
     <div class="top-actions">
       <button id="refresh" class="btn" type="button">Refresh</button>
-      <a id="run-scan" class="btn ghost" hidden target="_blank" rel="noopener">Run a new scan</a>
+      <button id="get-new" class="btn ghost" type="button">Get new listings</button>
     </div>
   </div>
 </header>
@@ -87,12 +87,36 @@
     </div>
   </details>
 
-  <details class="panel" id="import">
-    <summary>Add listings from a saved page</summary>
-    <p>Use this if the automatic scan is refused, or to add a search by hand. On SGCarMart, open a used-car search, press Ctrl+S (Cmd+S on a Mac) and save the page. Then choose the saved .html file here. Listings added this way stay on this device only and drop off after 3 days unless you add the page again.</p>
+  <details class="panel" id="get">
+    <summary>Get new listings from SGCarMart</summary>
+    <h3 class="step">One click, from your own browser</h3>
+    <ol class="method">
+      <li>On a computer, show your bookmarks bar (Ctrl+Shift+B, or Cmd+Shift+B on a Mac).</li>
+      <li>Drag this button onto the bookmarks bar: <a id="bookmarklet" class="btn drag" href="#" draggable="true">Scan SGCarMart</a> <span id="bookmarklet-msg" class="hint"></span></li>
+      <li>Open your search on SGCarMart<span id="last-search"></span>. Set the filters you want and sort by depreciation, lowest first.</li>
+      <li>Press the <b>Scan SGCarMart</b> bookmark. A green box appears and reads the result pages, up to 10, pausing between pages.</li>
+      <li>Press <b>Send to my dashboard</b> in the green box. This page opens with the cars rated.</li>
+    </ol>
+    <p class="hint">The bookmark only reads the search results your browser is showing, and only sends them to this dashboard.</p>
+
+    <h3 class="step">Share with your family</h3>
+    <p>Listings you scan stay on this device until you publish them. Publishing saves them into your GitHub repository, so everyone who opens this dashboard sees them after about a minute.</p>
+    <div class="form">
+      <label>GitHub access token for this repository
+        <input id="gh-token" type="password" autocomplete="off" placeholder="github_pat_…" spellcheck="false">
+        <small>Kept on this device only. Create one with access to this repository only, permission "Contents: Read and write" (steps in the README).</small></label>
+      <label id="gh-repo-label" hidden>Repository (owner/name)
+        <input id="gh-repo" type="text" autocomplete="off" placeholder="owner/sg-car-deals" spellcheck="false"></label>
+    </div>
+    <p class="row"><button type="button" class="btn" id="publish">Publish for my family</button>
+      <label class="check"><input id="auto-publish" type="checkbox"> Publish automatically after each scan</label></p>
+    <p id="publish-msg" class="hint" role="status"></p>
+
+    <h3 class="step">Or add a saved page</h3>
+    <p>On SGCarMart, open a used-car search, press Ctrl+S (Cmd+S on a Mac) and save the page. Then choose the saved .html file here.</p>
     <input id="files" type="file" accept=".html,.htm,text/html" multiple>
     <p id="import-msg" class="hint" role="status"></p>
-    <button type="button" class="link" id="import-clear" hidden>Remove listings added by hand</button>
+    <button type="button" class="link" id="import-clear" hidden>Remove unpublished listings from this device</button>
   </details>
 
   <details class="panel">

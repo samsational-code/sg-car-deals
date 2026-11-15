@@ -3,10 +3,13 @@
 A personal dashboard that rates SGCarMart used-car listings against the COE price you type in.
 
 - **The app** is a web page hosted free on GitHub Pages. It installs on a phone like an app and works offline.
-- **The scan** is a small job GitHub runs for you once a day. It reads your SGCarMart search and saves the listings into this repository. You can also run it with one click.
+- **Getting listings** takes one click: a bookmark you press while looking at your SGCarMart search in your own browser. It reads the result pages and sends them to the dashboard.
+- **Sharing** takes one more click (or none, if you tick "publish automatically"): the listings are saved into this repository, and everyone in the family who opens the dashboard sees them.
 - **You** type the latest Cat A and Cat B COE prices. Every car is re-rated at once.
 
 Built and tested on 14-15 Nov 2026. There is nothing to install on your computer.
+
+**Why a bookmark and not a fully automatic scan.** The first automatic scan from GitHub's servers, on 15 Nov 2026, was refused by SGCarMart with "HTTP 403" on its very first request. The site blocks automated requests from servers. Your own browser is not blocked, so the listings are now read there. See "Getting listings" below.
 
 ## Set up (about 15 minutes, once)
 
@@ -37,33 +40,50 @@ It must be public: GitHub's free plan only hosts web pages from public repositor
 2. Under **Build and deployment**, set **Source** to **Deploy from a branch**, **Branch** to `main` and folder `/ (root)`. Click **Save**.
 3. Wait two minutes, then open `https://YOUR-USERNAME.github.io/sg-car-deals/`. You should see the dashboard with starter data (six cars and a note saying so).
 
-**4. Put in your search**
+**4. Add the bookmark**
 
-1. On SGCarMart, build the search you want (see "Choosing a search" below) and copy the address from the address bar.
-2. In the repository click `searches.txt`, then the pencil icon. Replace the last line with your address. Click **Commit changes**.
+1. Open the dashboard on your computer and click **Get new listings**.
+2. Show your bookmarks bar (Ctrl+Shift+B) and drag the green **Scan SGCarMart** button onto it.
 
-**5. Run the first scan**
+**5. Create a token so you can share with your family**
 
-1. Click the **Actions** tab. If GitHub asks you to enable workflows, agree.
-2. Click **Scan SGCarMart** on the left, then **Run workflow** > **Run workflow**.
-3. Wait three to five minutes for a green tick. A red cross means the scan read nothing: see "If something goes wrong".
-4. Open the dashboard and press **Refresh**.
+A token is a password that lets the dashboard save listings into this one repository.
 
-**6. Put it on your phone**
+1. On github.com click your picture (top right) > **Settings** > **Developer settings** (bottom of the left menu) > **Personal access tokens** > **Fine-grained tokens** > **Generate new token**.
+2. Name: `sg-car-deals`. Expiration: pick the longest offered.
+3. **Repository access**: choose **Only select repositories** and pick `sg-car-deals`.
+4. **Permissions** > **Repository permissions** > **Contents**: choose **Read and write**. Leave everything else alone.
+5. Click **Generate token** and copy it (it starts with `github_pat_`). GitHub shows it only once.
+6. In the dashboard, under **Get new listings** > **Share with your family**, paste the token and tick **Publish automatically after each scan**.
 
-Open the dashboard address on your phone. iPhone: Share > **Add to Home Screen**. Android: menu > **Install app** or **Add to Home screen**.
+The token is kept in that browser only. It is never saved into the repository. Do not paste it anywhere else. Only you need one; your family just opens the dashboard.
+
+**6. Do the first scan**
+
+1. On SGCarMart, build your search (see "Choosing a search").
+2. Press the **Scan SGCarMart** bookmark. A green box appears in the corner and counts the cars as it reads up to 10 result pages.
+3. Press **Send to my dashboard**. The dashboard opens with the cars rated and, if you ticked the box, publishes them.
+
+**7. Put it on the family's phones**
+
+Send them the dashboard address. iPhone: Share > **Add to Home Screen**. Android: menu > **Install app** or **Add to Home screen**. They press **Refresh** to load the latest listings you published.
+
+**8. Turn off the old automatic scan**
+
+In the repository: **Actions** > **Scan SGCarMart** > the **...** button (top right) > **Disable workflow**. Otherwise it tries every morning, is refused, and GitHub emails you about it.
 
 ## Using it
 
-- **After each COE bidding result**, type the new Cat A and Cat B prices into the two boxes. They are remembered on that device.
-- **Refresh** reloads the latest saved listings. The scan itself runs at 07:17 Singapore time every day.
-- **Run a new scan** (shown on a computer) opens the GitHub page where you click **Run workflow**.
+- **To update the listings**: open your SGCarMart search, press the bookmark, press **Send to my dashboard**. Once a day is plenty.
+- **After each COE bidding result**, type the new Cat A and Cat B prices into the two boxes. They are remembered on each device separately.
+- **Refresh** reloads the latest published listings.
 - Tap a rating chip to filter. Tap a car's name to open it on SGCarMart.
 - **Your assumptions** holds the investment return (3% or 8%), yearly distance, fuel and electricity prices, ERP and parking.
+- Listings older than 3 days are hidden, and dropped from the repository after 14.
 
 ## Choosing a search
 
-The scan reads whatever search you paste, page by page, up to 10 pages (200 cars) per search. A focused search is better than a wide one. Based on the research:
+The bookmark reads whatever search you have open, page by page, up to 10 pages. A focused search is better than a wide one. Based on the research:
 
 | Filter | Set it to | Why |
 | --- | --- | --- |
@@ -72,39 +92,32 @@ The scan reads whatever search you paste, page by page, up to 10 pages (200 cars
 | Price | up to S$50,000 | Covers every car on the shortlist at that age |
 | Depreciation | up to S$16,000 a year | Removes the clearly expensive ones |
 | Sort | Depreciation (Lowest) | If the search has more than 10 pages, the best ones are read first |
+| Results per page | 100 (bottom of the page) | Fewer pages to read |
 
-You can add more lines to `searches.txt`, for example a second search for electric cars registered 2022 onwards. Keep the total modest: the scan stops at 30 requests a run.
+You can scan several searches one after another, for example a second one for electric cars registered 2022 onwards. Each scan adds to the dashboard. After the first scan the dashboard keeps a link to your last search.
 
-The starter line in `searches.txt` has the year, price and depreciation filters but not the vehicle type, because the address code for that filter is not known to me. Set it on the site and copy the address.
+Set the vehicle type on the site. The first results page tells the dashboard which listings are vans; later pages do not, and there it recognises common van and truck names only.
 
-## How the scan behaves
+## What the bookmark does and does not do
 
-- Reads only search-results pages on `www.sgcarmart.com/used-cars/listing`. It never opens individual car pages and never logs in.
-- Reads `robots.txt` first and skips anything it disallows.
-- Waits 8 seconds between pages (never under 5, longer if `robots.txt` asks).
-- At most 30 requests a run, once a day.
-- Says who it is: its User-Agent is `sg-car-deals/1.0` with the address of your repository.
-- If the site answers 401, 403 or 429, or shows a bot check, it stops at once and does not retry. The dashboard shows a notice and keeps the last good listings.
+- It runs only when you press it, in your own browser, on the SGCarMart search you have open.
+- It reads the result cards on the page, then presses the site's own **Next** button, waits for the next page, and reads that. It pauses at least 3 seconds between pages and stops after 10 pages or 800 cars.
+- It never opens individual car pages, never logs in, and sends nothing anywhere until you press **Send to my dashboard**. Then it hands the listings to your dashboard only.
+- It does not pretend to be anything it is not: the requests are your browser's ordinary ones.
 
-Limits are in `scanner.config.json`.
-
-**Permission.** You told me on 13 Nov 2026 that SGCarMart's head of sales said scraping is welcome. That is a spoken assurance. I could not read SGCarMart's terms of use or `robots.txt` from the build environment, so neither has been checked. A short written confirmation is worth having, and it is worth reading the terms page yourself.
+**Permission.** You told me on 13 Nov 2026 that SGCarMart's head of sales said scraping is welcome. That is a spoken assurance, and the site's firewall refused the server-side scan regardless. I could not read SGCarMart's terms of use from where I work. A short written confirmation is worth having. If SGCarMart ever allows the server-side scan, see "The automatic scan" at the end.
 
 ## If something goes wrong
 
-**The scan has a red cross.** Click the run, then the failed step, to read the message. The dashboard banner says the same thing in plainer words.
+**Nothing happens when I press the bookmark.** Some sites stop bookmarks from running code. Use the fallback: on your search press Ctrl+S, save the page, and in the dashboard choose the file under **Or add a saved page**. One file per results page. Tell me, and I can look for another route.
 
-**"Refused" or "could not reach".** SGCarMart may block requests from GitHub's servers. Do not keep re-running it. Use the dashboard's **Add listings from a saved page** instead: open your search on SGCarMart, press Ctrl+S, save the page, and choose the saved file in the dashboard. One file per results page. Listings added this way stay on that device.
+**The green box says "The site did not show the next page".** The bookmark could not work the site's Next button. What it read so far is kept. Click the next page yourself and press the bookmark again; each press adds that page.
 
-**"Only the first page could be read".** The scan asks for later pages by adding `page=2` to your address. That is a guess, because the saved page I worked from does not show how SGCarMart numbers its pages. To fix it: open your search on SGCarMart, click page 2, and look at the address bar.
-- If it shows something like `&pg=2`, edit `scanner.config.json` and change `"page_param": "page"` to `"page_param": "pg"`.
-- If the address does not change, split the search into narrower ones (for example one line per registration year) so each fits on one page, or raise the results per page on the site and copy that address.
+**"GitHub rejected the token" or "cannot write to this repository".** Make a new token following step 5 exactly: the repository must be selected and Contents set to Read and write.
 
-**"Save results" fails with a permission error.** Settings > Actions > General > Workflow permissions > **Read and write permissions** > Save. Run the scan again.
+**The family does not see new listings.** GitHub takes a minute or two to publish. Then press **Refresh**. If the page itself looks old after an update, reload it twice.
 
-**The dashboard shows old listings.** Press Refresh. GitHub takes a minute or two to publish after a scan.
-
-**Ratings look wrong after a site redesign.** The reader is `lib/parse.js`. `node --test` shows whether it still reads the sample. Send me a freshly saved results page and I can update it.
+**Ratings look wrong after a site redesign.** The reader is `lib/parse.js`. Send me a freshly saved results page and I can update it.
 
 ## How cars are rated
 
@@ -129,19 +142,19 @@ Limits are in `scanner.config.json`.
 
 ## What was tested, and what was not
 
-Tested (28 automated checks, `node --test`, plus a headless-browser run):
+Tested (34 automated checks, `node --test`, plus headless-browser runs):
 
 - The page reader against a real SGCarMart results page saved on 14 Nov 2026: all 20 listings read, and the two reading methods agree on every price, depreciation, date, mileage and engine figure.
 - The rating engine against the earlier Python model on 26 real listings: 442 comparisons, no differences.
-- The scan against a stand-in website: paging, limits, `robots.txt`, refusals, bot checks, price history.
-- The dashboard: COE input, filters, search, sorting, import of a saved page, offline use, phone layout, and that listing text cannot inject code.
+- The bookmark, end to end: the real bookmark was run on that real saved page (served to a test browser as if from sgcarmart.com), with a stand-in for the site's Next button. It read 60 cars over 3 pages, waited between pages, handed them to the dashboard, and the dashboard published them to a stand-in for GitHub.
+- The hand-over: listings arrive unchanged, and anything malformed or pointing away from sgcarmart.com is dropped.
+- The dashboard: COE input, filters, search, sorting, saved-page import, offline use, phone layout, and that listing text cannot inject code.
 
 Not tested:
 
-- **The scan has never contacted sgcarmart.com.** I cannot reach the site from where I work. Your first run is the real test.
-- **Paging by address** (`page=2`) is a guess, as explained above. The scan detects when it does not work and says so.
-- **`ord=DEP_ASC`** in the starter search comes from the site's own sort menu but has not been tried in an address.
-- The GitHub job file itself has not been run on GitHub.
+- **The bookmark has not been pressed on the live site.** I cannot reach sgcarmart.com from where I work. Two things could differ there: whether the site lets a bookmark run, and whether its Next button responds to the bookmark's click. Both failures are reported on screen, and the saved-page route covers them.
+- **Publishing has not been tried against the real GitHub**, only a stand-in that behaves the same way.
+- Van recognition by name is a list of common models, not a complete one.
 
 ## Files
 
@@ -150,13 +163,17 @@ Not tested:
 | `index.html`, `app.js`, `styles.css` | The dashboard |
 | `lib/engine.js` | Valuation and rating rules |
 | `lib/parse.js` | Reads an SGCarMart results page |
-| `scripts/fetch.mjs` | The scan |
-| `.github/workflows/scan.yml` | Tells GitHub to run the scan daily |
-| `searches.txt` | Your searches |
-| `scanner.config.json` | Scan limits |
-| `data/listings.json`, `data/status.json` | Written by the scan |
+| `lib/capture.js`, `lib/bookmarklet.js` | The bookmark |
+| `lib/transfer.js` | Checks listings handed over by the bookmark |
+| `lib/store.js` | First-seen dates and price history |
+| `data/listings.json`, `data/status.json` | The published listings |
 | `data/models.json`, `data/price_guide.json` | Reference tables |
 | `sw.js`, `manifest.webmanifest`, `icons/` | Offline use and phone install |
 | `tests/` | Automated checks |
+| `scripts/fetch.mjs`, `.github/workflows/scan.yml`, `searches.txt`, `scanner.config.json` | The automatic scan (currently refused by SGCarMart) |
+
+## The automatic scan
+
+`scripts/fetch.mjs` is a server-side scan that GitHub can run. It reads `robots.txt` first, waits 8 seconds between pages, makes at most 30 requests a run, names itself honestly (`sg-car-deals/1.0` plus your repository's address), and stops without retrying when refused. On 15 Nov 2026 SGCarMart answered its first request with HTTP 403, so it is switched to manual-only. If SGCarMart agrees to let it through, run it from **Actions** > **Scan SGCarMart** > **Run workflow**; the comment at the top of `scan.yml` shows how to make it daily again.
 
 Listings and figures come from sgcarmart.com. This is a personal tool, not affiliated with SGCarMart, and not financial advice.

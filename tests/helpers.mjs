@@ -43,6 +43,7 @@ export function buildPage({ records = sampleRecords, cards = sampleCards, page =
     `<div>${total ?? records.length} Vehicles</div>${cards}` +
     `<div id="desktopPaginationContainer"><ul><li><span data-value="${page}">${page}<span>(current)</span></span></li>` +
     `<li><a data-value="${lastPage}" role="button" href="#">${lastPage}</a></li></ul></div>` +
+    '<div><a data-value="100" role="button" href="#">100</a></div>' +      // results-per-page menu: must not be mistaken for a page link
     (embedded ? flightScripts(records, { page, lastPage, total: total ?? records.length }) : '') +
     '<p>' + 'x'.repeat(31000) + '</p></body></html>';
 }

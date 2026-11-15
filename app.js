@@ -3,6 +3,10 @@
 
 import { rateAll, DEFAULT_SETTINGS, REFERENCE } from './lib/engine.js';
 import { parseListingPage } from './lib/parse.js';
+import { mergeListings, serialiseListings } from './lib/store.js';
+import { decodePayload, sanitise } from './lib/transfer.js';
+import { bookmarkletHref } from './lib/bookmarklet.js';
+import { FIELDS } from './lib/capture.js';
 
 const $ = (id) => document.getElementById(id);
 const RATINGS = ['Exceptional', 'Attractive', 'Fair', 'Overpriced', 'Avoid'];
@@ -17,6 +21,8 @@ const state = {
   settings: { ...DEFAULT_SETTINGS, ...store.get('settings', {}) },
   view: { ratings: [], q: '', sort: 'score', hideLow: false, ...store.get('view', {}) },
   imported: store.get('imported', []),
+  lastCapture: store.get('lastCapture', null),
+  token: store.get('token', ''), autoPublish: store.get('autoPublish', false),
   models: [], guide: [], scanned: [], status: null, updated: null,
   rated: [],
 };
@@ -90,16 +96,21 @@ function showBanner(kind, html) {
 function renderStatus() {
   const s = state.status, today = sgToday();
   const n = state.scanned.length;
-  if (!s) { $('scan-line').textContent = n ? `${n} listings stored` : 'No scan has run yet'; return; }
+  const mine = state.imported.filter((l) => daysBetween(l.last_seen, today) <= FRESH_DAYS).length;
+  const local = mine ? ` · ${mine} on this device, not yet published` : '';
+  if (!s) { $('scan-line').textContent = (n ? `${n} listings stored` : 'No listings yet') + local; showBanner(null); return; }
   const when = s.finished ? new Date(s.finished).toLocaleString('en-SG', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Singapore' }) : '';
-  $('scan-line').textContent = s.seed ? 'Starter data from 14 Nov 2026. Run a scan to load live listings.'
-    : `Last scan ${when} SGT · ${s.listings_found} listings read`;
+  const fromBrowser = s.source === 'browser';
+  $('scan-line').textContent = (s.seed ? 'Starter data from 14 Nov 2026.'
+    : s.ok ? `Updated ${when} SGT${fromBrowser ? ' from your browser' : ''} · ${s.listings_found} cars read` : `Shared listings: ${n}`) + local;
   const notes = (s.searches || []).filter((x) => x.note).map((x) => esc(x.note));
-  if (s.seed) { showBanner('info', 'Showing starter data: one page saved by hand on 14 Nov 2026, mostly vans. Set up the scan (see the README in your repository) to load live listings.'); return; }
-  if (s.stopped) { showBanner('bad', `The last scan was refused: ${esc(s.stopped)}. Nothing was retried. The listings below are from the last scan that worked. You can still add listings by hand, below.`); return; }
-  if (!s.ok) { showBanner('bad', `The last scan read no listings. ${[...(s.messages || []).map(esc), ...notes].join(' ')}`); return; }
+  const how = 'Open <b>Get new listings</b> below for the one-click way to load them from your own browser.';
+  if (mine && !s.ok) { showBanner(null); return; }
+  if (s.seed) { showBanner('info', `Showing starter data: one page saved by hand on 14 Nov 2026, mostly vans. ${how}`); return; }
+  if (s.stopped || (s.github_job && s.github_job.stopped && !s.ok)) { showBanner('warn', `SGCarMart refuses the automatic scan from GitHub's servers (${esc(s.stopped || s.github_job.stopped)}). ${how}`); return; }
+  if (!s.ok) { showBanner('bad', `The last update read no listings. ${[...(s.messages || []).map(esc), ...notes].join(' ')}`); return; }
   const age = state.updated ? daysBetween(state.updated.slice(0, 10), today) : 0;
-  if (age > 2) { showBanner('warn', `The listings are ${age} days old. The daily scan may have stopped: check the Actions tab of your repository.`); return; }
+  if (age > 2) { showBanner('warn', `The shared listings are ${age} days old. ${how}`); return; }
   if (notes.length) { showBanner('info', notes.join(' ')); return; }
   showBanner(null);
 }
@@ -152,9 +163,10 @@ function render() {
 
   $('q').value = view.q; $('sort').value = view.sort; $('hide-low').checked = view.hideLow;
   $('import-clear').hidden = !state.imported.length;
+  renderShare();
 
   if (!shown.length) {
-    $('list').innerHTML = `<p class="empty">${rated.length ? 'No cars match these filters.' : 'No rated cars yet. Run a scan, or add listings from a saved page below.'}</p>`;
+    $('list').innerHTML = `<p class="empty">${rated.length ? 'No cars match these filters.' : 'No rated cars yet. Open "Get new listings from SGCarMart" below.'}</p>`;
     return;
   }
   $('list').innerHTML = shown.slice(0, 300).map(card).join('');
@@ -177,7 +189,7 @@ function card({ listing: l, v }) {
     const prev = p[p.length - 2][1], diff = l.price - prev;
     tags.push(`<span class="tag ${diff < 0 ? 'drop' : 'rise'}">${diff < 0 ? 'Price cut' : 'Price up'} ${money(Math.abs(diff))} on ${niceDate(p[p.length - 1][0])}</span>`);
   }
-  if (l.origin === 'import') tags.push('<span class="tag">Added by hand</span>');
+  if (l.origin === 'import') tags.push('<span class="tag">Not yet published</span>');
   if (!l.in_last_scan && l.origin === 'scan') tags.push(`<span class="tag">Last seen ${niceDate(l.last_seen)}</span>`);
   if (v.confidence !== 'high') tags.push(`<span class="tag">${v.confidence === 'low' ? 'Low' : 'Medium'} confidence</span>`);
 
@@ -263,43 +275,168 @@ function wire() {
   $('files').addEventListener('change', importFiles);
   $('import-clear').addEventListener('click', () => { state.imported = []; store.set('imported', []); $('import-msg').textContent = 'Removed.'; rerate(); });
 
-  // On GitHub Pages the address tells us which repository this is, so we can link to its scan.
-  const m = location.hostname.match(/^([a-z0-9-]+)\.github\.io$/i);
-  const repo = location.pathname.split('/').filter(Boolean)[0];
-  if (m && repo) { const a = $('run-scan'); a.href = `https://github.com/${m[1]}/${repo}/actions/workflows/scan.yml`; a.hidden = false; }
+  $('get-new').addEventListener('click', () => { $('get').open = true; $('get').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+  $('gh-token').addEventListener('change', () => { state.token = $('gh-token').value.trim(); store.set('token', state.token); renderShare(); });
+  $('gh-repo').addEventListener('change', () => { store.set('repo', $('gh-repo').value.trim()); renderShare(); });
+  $('auto-publish').addEventListener('change', () => { state.autoPublish = $('auto-publish').checked; store.set('autoPublish', state.autoPublish); });
+  $('publish').addEventListener('click', () => publish());
+  buildBookmark();
 }
 
 // Typing in the search box must not rebuild the box itself.
 function renderListOnly() { const q = $('q'), pos = q.selectionStart; render(); q.focus(); try { q.setSelectionRange(pos, pos); } catch { /* not supported for this input type */ } }
 
+/** Adds listings read on this device (bookmark or saved page) to the local, unpublished set. */
+function addLocal(listings) {
+  const today = sgToday();
+  const byId = new Map(state.imported.map((l) => [l.id, l]));
+  let added = 0;
+  for (const l of listings) {
+    if (l.id == null) continue;
+    const old = byId.get(l.id);
+    const prices = old && Array.isArray(old.prices) ? [...old.prices] : [];
+    if (l.price && (!prices.length || prices[prices.length - 1][1] !== l.price)) prices.push([today, l.price]);
+    byId.set(l.id, { ...l, first_seen: old ? old.first_seen : today, last_seen: today, prices, in_last_scan: true });
+    added++;
+  }
+  state.imported = [...byId.values()].filter((l) => daysBetween(l.last_seen, today) <= FRESH_DAYS);
+  store.set('imported', state.imported);
+  return added;
+}
+
 async function importFiles(e) {
   const files = [...e.target.files];
-  const today = sgToday();
   let added = 0; const notes = [];
-  const byId = new Map(state.imported.map((l) => [l.id, l]));
   for (const f of files) {
     const r = parseListingPage(await f.text());
     if (!r.listings.length) { notes.push(`${f.name}: ${r.warnings[0] || 'no listings found'}`); continue; }
-    for (const l of r.listings) {
-      if (l.id == null) continue;
-      const old = byId.get(l.id);
-      const prices = old && Array.isArray(old.prices) ? [...old.prices] : [];
-      if (l.price && (!prices.length || prices[prices.length - 1][1] !== l.price)) prices.push([today, l.price]);
-      byId.set(l.id, { ...l, first_seen: old ? old.first_seen : today, last_seen: today, prices, in_last_scan: true });
-      added++;
-    }
+    added += addLocal(r.listings);
     notes.push(`${f.name}: ${r.listings.length} listings${r.basis === 'cards' ? ' (read from the visible cards; vans cannot be told apart this way)' : ''}`);
   }
-  state.imported = [...byId.values()];
-  store.set('imported', state.imported);
   $('import-msg').textContent = notes.join(' · ') || 'No files chosen.';
   e.target.value = '';
-  if (added) toast(`${added} listings added.`);
+  if (added) toast(`${added} listings added on this device.`);
   rerate();
+  if (added && state.autoPublish && state.token) publish();
+}
+
+/** Listings handed over by the bookmark arrive in the address as #import=... */
+async function importFromAddress() {
+  const m = location.hash.match(/^#import=([a-z]\.[A-Za-z0-9_-]+)$/);
+  if (!location.hash.startsWith('#import=')) return;
+  history.replaceState(null, '', location.pathname + location.search);       // do not keep the data in the address bar
+  try {
+    if (!m) throw new Error('damaged');
+    const { listings, info } = sanitise(await decodePayload(m[1]));
+    if (!listings.length) { toast('The scan held no usable listings.'); return; }
+    const added = addLocal(listings);
+    state.lastCapture = { ...info, count: listings.length };
+    store.set('lastCapture', state.lastCapture);
+    const pages = info.pages ? ` from ${info.pages} page${info.pages > 1 ? 's' : ''}${info.last_page && info.last_page > info.pages ? ` of ${info.last_page}` : ''}` : '';
+    toast(`${added} cars received from SGCarMart${pages}.`);
+    $('import-msg').textContent = info.note || '';
+    rerate();
+    if (state.autoPublish && state.token) publish();
+  } catch {
+    toast('Could not read the listings sent by the bookmark. Try the scan again.');
+  }
+}
+
+// ---------- the bookmark ----------
+
+async function buildBookmark() {
+  const a = $('bookmarklet');
+  a.addEventListener('click', (e) => { e.preventDefault(); toast('Drag this button onto your bookmarks bar, then press it on an SGCarMart search.'); });
+  try {
+    const [p, c] = await Promise.all(['lib/parse.js', 'lib/capture.js'].map((f) => fetch(f).then((r) => { if (!r.ok) throw new Error(f); return r.text(); })));
+    a.href = bookmarkletHref(p, c, location.origin + location.pathname);
+  } catch {
+    $('bookmarklet-msg').textContent = 'Could not prepare the bookmark. Reload this page while online.';
+  }
+}
+
+// ---------- publishing to the family ----------
+
+function repoInfo() {
+  const m = location.hostname.match(/^([a-z0-9-]+)\.github\.io$/i);
+  const first = location.pathname.split('/').filter(Boolean)[0];
+  if (m && first) return { owner: m[1], repo: first, fixed: true };
+  const [owner, repo] = String(store.get('repo', '') || '').split('/');
+  return owner && repo ? { owner, repo, fixed: false } : { owner: null, repo: null, fixed: false };
+}
+
+function renderShare() {
+  const info = repoInfo(), today = sgToday();
+  if (document.activeElement !== $('gh-token')) $('gh-token').value = state.token;
+  $('gh-repo-label').hidden = info.fixed;
+  if (!info.fixed && document.activeElement !== $('gh-repo')) $('gh-repo').value = store.get('repo', '');
+  $('auto-publish').checked = state.autoPublish;
+  const ready = state.imported.filter((l) => l.last_seen === today).length;
+  $('publish').disabled = !state.token || !info.owner || !ready || publish.busy;
+  $('publish').textContent = ready ? `Publish ${ready} cars for my family` : 'Publish for my family';
+  const url = state.lastCapture && state.lastCapture.url;
+  $('last-search').innerHTML = safeUrl(url) ? ` (<a href="${esc(url)}" target="_blank" rel="noopener">your last search</a>)` : '';
+}
+
+const utf8ToB64 = (text) => { const b = new TextEncoder().encode(text); let s = ''; for (let i = 0; i < b.length; i += 0x8000) s += String.fromCharCode.apply(null, b.subarray(i, i + 0x8000)); return btoa(s); };
+const b64ToUtf8 = (b64) => new TextDecoder().decode(Uint8Array.from(atob(b64.replace(/\s/g, '')), (c) => c.charCodeAt(0)));
+
+async function ghFile(info, path, body) {
+  const res = await fetch(`https://api.github.com/repos/${info.owner}/${info.repo}/contents/${path}`, {
+    method: body ? 'PUT' : 'GET', cache: 'no-store',
+    headers: { Authorization: `Bearer ${state.token}`, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' },
+    body: body ? JSON.stringify(body) : undefined,
+  });
+  if (res.status === 404 && !body) return null;
+  if (!res.ok) { const e = new Error(`GitHub answered ${res.status}`); e.status = res.status; throw e; }
+  return res.json();
+}
+
+/** Saves today's locally scanned listings into data/listings.json in the repository, for everyone. */
+async function publish() {
+  if (publish.busy) return;
+  const info = repoInfo(), today = sgToday();
+  const fresh = state.imported.filter((l) => l.last_seen === today)
+    .map((l) => Object.fromEntries(FIELDS.map((f) => [f, l[f] ?? null])));
+  if (!state.token || !info.owner || !fresh.length) return;
+  publish.busy = true; renderShare();
+  const say = (t) => { $('publish-msg').textContent = t; };
+  say('Publishing…');
+  try {
+    let merged, status;
+    for (let attempt = 0; ; attempt++) {
+      try {
+        const cur = await ghFile(info, 'data/listings.json');
+        const existing = cur ? (JSON.parse(b64ToUtf8(cur.content)).listings || []) : [];
+        const wasStarter = state.status && state.status.seed;
+        merged = mergeListings(wasStarter ? [] : existing, fresh, today, 14);
+        const now = new Date().toISOString(), c = state.lastCapture || {};
+        status = { started: now, finished: now, today, ok: true, source: 'browser', requests: null, robots: null, stopped: null,
+          searches: [{ url: c.url || null, pages_read: c.pages ?? null, last_page: c.last_page ?? null, total: c.total ?? null, listings: fresh.length, basis: 'browser', note: c.note || null }],
+          messages: [], listings_found: fresh.length };
+        await ghFile(info, 'data/listings.json', { message: `Listings from browser scan ${today}`, content: utf8ToB64(serialiseListings(merged, status)), sha: cur ? cur.sha : undefined });
+        break;
+      } catch (e) { if (e.status === 409 && attempt === 0) continue; throw e; }      // someone else saved in between: read again once
+    }
+    const st = await ghFile(info, 'data/status.json');
+    await ghFile(info, 'data/status.json', { message: `Status ${today}`, content: utf8ToB64(JSON.stringify(status, null, 1) + '\n'), sha: st ? st.sha : undefined });
+    state.scanned = merged; state.status = status; state.updated = status.finished;
+    const sent = new Set(fresh.map((l) => l.id));
+    state.imported = state.imported.filter((l) => !sent.has(l.id)); store.set('imported', state.imported);
+    say(`Published ${fresh.length} cars at ${new Date().toLocaleTimeString('en-SG', { hour: '2-digit', minute: '2-digit' })}. Other devices see them after about a minute: press Refresh there.`);
+    toast('Published for your family.');
+  } catch (e) {
+    say(e.status === 401 ? 'GitHub rejected the token. Check it was pasted whole and has not expired.'
+      : e.status === 403 || e.status === 404 ? 'The token cannot write to this repository. It needs access to this repository with "Contents: Read and write".'
+      : `Could not publish (${e.message}). Your listings are still on this device; try again.`);
+  } finally {
+    publish.busy = false; rerate();
+  }
 }
 
 wire();
-loadData();
+loadData().then(importFromAddress);
+window.addEventListener('hashchange', importFromAddress);     // a second scan sent to this already-open tab
 
 if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
   navigator.serviceWorker.register('sw.js').catch(() => { /* the app works without it */ });

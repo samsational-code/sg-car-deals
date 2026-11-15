@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { rateAll, prepare, roadTaxPerYear, coeCategory, matchModel, coeScale, DEFAULT_SETTINGS, REFERENCE } from '../lib/engine.js';
+import { rateAll, prepare, roadTaxPerYear, coeCategory, matchModel, coeScale, looksCommercial, DEFAULT_SETTINGS, REFERENCE } from '../lib/engine.js';
 import { parseListingPage } from '../lib/parse.js';
 import { buildPage } from './helpers.mjs';
 
@@ -110,4 +110,16 @@ test('electric car: battery cover scored, kW read from the title', () => {
   assert.ok(v.scores.battery > 30 && v.scores.battery < 100);
   assert.equal(v.costs.road_tax, Math.round(((250 + 3.75 * 70) * 0.782 + 350) * 2));
   assert.ok(v.why.includes('Battery health'));
+});
+
+test('vans and trucks are recognised by name when the vehicle type is not shown', () => {
+  const real = JSON.parse(fs.readFileSync(new URL('../data/listings.json', import.meta.url), 'utf8')).listings;   // 20 real listings, 14 commercial
+  for (const l of real) {
+    const truth = ['Van', 'Truck'].includes(l.type);
+    assert.equal(looksCommercial({ title: l.title, type: null }), truth, l.title);       // by name alone
+    assert.equal(looksCommercial(l), truth, l.title);                                    // with the type
+  }
+  for (const car of ['Toyota Vios 1.5A E', 'Honda Fit 1.3A G', 'Mercedes-Benz E-Class E200', 'BYD Atto 3 Electric', 'Kia Carnival 2.2A', 'Toyota Corolla Altis 1.6A', 'Volkswagen Golf 1.4A TSI'])
+    assert.equal(looksCommercial({ title: car, type: null }), false, car);
+  assert.equal(looksCommercial({ title: 'Toyota Hiace 3.0M', type: 'MPV' }), false);     // the site's own type always wins
 });
