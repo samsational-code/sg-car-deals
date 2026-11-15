@@ -1,26 +1,13 @@
 {
- "started": "2026-11-14T00:00:00.000Z",
- "finished": "2026-11-14T00:00:00.000Z",
- "today": "2026-11-14",
- "ok": true,
- "requests": 0,
- "robots": null,
- "stopped": null,
- "seed": true,
- "listings_found": 20,
- "user_agent": null,
- "searches": [
-  {
-   "url": "https://www.sgcarmart.com/used-cars/listing?pr2=50000&dp2=16000&fr=2018&to=2019&ord=PRC_ASC",
-   "pages_read": 1,
-   "last_page": 49,
-   "total": 970,
-   "listings": 20,
-   "basis": "embedded",
-   "note": "Starter data: page 1 of this search, saved by hand from a browser on 14 Nov 2026. The first scan replaces it."
-  }
- ],
- "messages": [
-  "Starter data only. Run the scan (see README) to load live listings."
- ]
+ "started": "2026-11-15T03:30:05.522Z",
+ "finished": "2026-11-15T03:30:05.659Z",
+ "today": "2026-11-15",
+ "ok": false,
+ "requests": 1,
+ "robots": "refused (HTTP 403)",
+ "stopped": "robots.txt answered HTTP 403: the site is refusing this scanner",
+ "searches": [],
+ "messages": [],
+ "listings_found": 0,
+ "user_agent": "sg-car-deals/1.0 (personal used-car dashboard; +https://github.com/samsational-code/sg-car-deals)"
 }
