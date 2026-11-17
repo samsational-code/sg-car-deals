@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "SG Car Deals scanner",
+  "version": "1.0",
+  "description": "Adds a 'Scan for SG Car Deals' button to SGCarMart used-car searches. Reads the results you are viewing and sends them to your own dashboard when you press Send.",
+  "icons": { "192": "icon-192.png", "512": "icon-512.png" },
+  "content_scripts": [
+    { "matches": ["https://www.sgcarmart.com/*"], "js": ["content.js"], "run_at": "document_idle" }
+  ]
+}
