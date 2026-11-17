@@ -5,7 +5,6 @@ import { rateAll, DEFAULT_SETTINGS, REFERENCE } from './lib/engine.js';
 import { parseListingPage } from './lib/parse.js';
 import { mergeListings, serialiseListings } from './lib/store.js';
 import { decodePayload, sanitise } from './lib/transfer.js';
-import { bookmarkletHref } from './lib/bookmarklet.js';
 import { FIELDS } from './lib/capture.js';
 
 const $ = (id) => document.getElementById(id);
@@ -280,13 +279,12 @@ function wire() {
   $('gh-repo').addEventListener('change', () => { store.set('repo', $('gh-repo').value.trim()); renderShare(); });
   $('auto-publish').addEventListener('change', () => { state.autoPublish = $('auto-publish').checked; store.set('autoPublish', state.autoPublish); });
   $('publish').addEventListener('click', () => publish());
-  buildBookmark();
 }
 
 // Typing in the search box must not rebuild the box itself.
 function renderListOnly() { const q = $('q'), pos = q.selectionStart; render(); q.focus(); try { q.setSelectionRange(pos, pos); } catch { /* not supported for this input type */ } }
 
-/** Adds listings read on this device (bookmark or saved page) to the local, unpublished set. */
+/** Adds listings read on this device (scanner or saved page) to the local, unpublished set. */
 function addLocal(listings) {
   const today = sgToday();
   const byId = new Map(state.imported.map((l) => [l.id, l]));
@@ -320,7 +318,7 @@ async function importFiles(e) {
   if (added && state.autoPublish && state.token) publish();
 }
 
-/** Listings handed over by the bookmark arrive in the address as #import=... */
+/** Listings handed over by the scanner arrive in the address as #import=... */
 async function importFromAddress() {
   const m = location.hash.match(/^#import=([a-z]\.[A-Za-z0-9_-]+)$/);
   if (!location.hash.startsWith('#import=')) return;
@@ -338,20 +336,7 @@ async function importFromAddress() {
     rerate();
     if (state.autoPublish && state.token) publish();
   } catch {
-    toast('Could not read the listings sent by the bookmark. Try the scan again.');
-  }
-}
-
-// ---------- the bookmark ----------
-
-async function buildBookmark() {
-  const a = $('bookmarklet');
-  a.addEventListener('click', (e) => { e.preventDefault(); toast('Drag this button onto your bookmarks bar, then press it on an SGCarMart search.'); });
-  try {
-    const [p, c] = await Promise.all(['lib/parse.js', 'lib/capture.js'].map((f) => fetch(f).then((r) => { if (!r.ok) throw new Error(f); return r.text(); })));
-    a.href = bookmarkletHref(p, c, location.origin + location.pathname);
-  } catch {
-    $('bookmarklet-msg').textContent = 'Could not prepare the bookmark. Reload this page while online.';
+    toast('Could not read the listings sent by the scanner. Try the scan again.');
   }
 }
 
@@ -392,6 +377,13 @@ async function ghFile(info, path, body) {
   return res.json();
 }
 
+async function ghRaw(info, path) {
+  const res = await fetch(`https://api.github.com/repos/${info.owner}/${info.repo}/contents/${path}`, { cache: 'no-store',
+    headers: { Authorization: `Bearer ${state.token}`, Accept: 'application/vnd.github.raw+json', 'X-GitHub-Api-Version': '2022-11-28' } });
+  if (!res.ok) { const e = new Error(`GitHub answered ${res.status}`); e.status = res.status; throw e; }
+  return res.text();
+}
+
 /** Saves today's locally scanned listings into data/listings.json in the repository, for everyone. */
 async function publish() {
   if (publish.busy) return;
@@ -407,7 +399,12 @@ async function publish() {
     for (let attempt = 0; ; attempt++) {
       try {
         const cur = await ghFile(info, 'data/listings.json');
-        const existing = cur ? (JSON.parse(b64ToUtf8(cur.content)).listings || []) : [];
+        let existing = [];
+        if (cur) {
+          // GitHub leaves the content out of this answer for files over 1 MB; fetch the text separately then.
+          const text = cur.content ? b64ToUtf8(cur.content) : await ghRaw(info, 'data/listings.json');
+          existing = JSON.parse(text).listings || [];
+        }
         const wasStarter = state.status && state.status.seed;
         merged = mergeListings(wasStarter ? [] : existing, fresh, today, 14);
         const now = new Date().toISOString(), c = state.lastCapture || {};

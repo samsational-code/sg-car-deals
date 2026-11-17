@@ -3,13 +3,13 @@
 A personal dashboard that rates SGCarMart used-car listings against the COE price you type in.
 
 - **The app** is a web page hosted free on GitHub Pages. It installs on a phone like an app and works offline.
-- **Getting listings** takes one click: a bookmark you press while looking at your SGCarMart search in your own browser. It reads the result pages and sends them to the dashboard.
+- **Getting listings** takes one click: a small browser extension adds a **Scan for SG Car Deals** button to your SGCarMart search. It reads the result pages in your own browser and sends them to the dashboard.
 - **Sharing** takes one more click (or none, if you tick "publish automatically"): the listings are saved into this repository, and everyone in the family who opens the dashboard sees them.
 - **You** type the latest Cat A and Cat B COE prices. Every car is re-rated at once.
 
 Built and tested on 14-15 Nov 2026. There is nothing to install on your computer.
 
-**Why a bookmark and not a fully automatic scan.** The first automatic scan from GitHub's servers, on 15 Nov 2026, was refused by SGCarMart with "HTTP 403" on its very first request. The site blocks automated requests from servers. Your own browser is not blocked, so the listings are now read there. See "Getting listings" below.
+**Why a button in your browser and not a fully automatic scan.** The first automatic scan from GitHub's servers, on 15 Nov 2026, was refused by SGCarMart with "HTTP 403" on its very first request. The site blocks automated requests from servers. Your own browser is not blocked, so the listings are now read there. See "Getting listings" below.
 
 ## Set up (about 15 minutes, once)
 
@@ -40,10 +40,12 @@ It must be public: GitHub's free plan only hosts web pages from public repositor
 2. Under **Build and deployment**, set **Source** to **Deploy from a branch**, **Branch** to `main` and folder `/ (root)`. Click **Save**.
 3. Wait two minutes, then open `https://YOUR-USERNAME.github.io/sg-car-deals/`. You should see the dashboard with starter data (six cars and a note saying so).
 
-**4. Add the bookmark**
+**4. Install the scanner (Chrome or Edge, on a computer)**
 
-1. Open the dashboard on your computer and click **Get new listings**.
-2. Show your bookmarks bar (Ctrl+Shift+B) and drag the green **Scan SGCarMart** button onto it.
+1. Open the dashboard, click **Get new listings**, then **Download the scanner**. Or use `sg-car-deals-scanner.zip` from this folder.
+2. Right-click the downloaded file, choose **Extract All**, and extract it into your Documents folder. Leave it there: the browser reads it from that folder every time.
+3. Type `chrome://extensions` in the address bar. Switch on **Developer mode** (top right).
+4. Click **Load unpacked** and choose the `sg-car-deals-scanner` folder (the one containing `manifest.json`).
 
 **5. Create a token so you can share with your family**
 
@@ -61,7 +63,7 @@ The token is kept in that browser only. It is never saved into the repository. D
 **6. Do the first scan**
 
 1. On SGCarMart, build your search (see "Choosing a search").
-2. Press the **Scan SGCarMart** bookmark. A green box appears in the corner and counts the cars as it reads up to 10 result pages.
+2. Click the green **Scan for SG Car Deals** button at the bottom right of the page. A green box counts the cars as it reads the whole search, 100 at a time.
 3. Press **Send to my dashboard**. The dashboard opens with the cars rated and, if you ticked the box, publishes them.
 
 **7. Put it on the family's phones**
@@ -74,7 +76,7 @@ In the repository: **Actions** > **Scan SGCarMart** > the **...** button (top ri
 
 ## Using it
 
-- **To update the listings**: open your SGCarMart search, press the bookmark, press **Send to my dashboard**. Once a day is plenty.
+- **To update the listings**: open your SGCarMart search, click **Scan for SG Car Deals**, then **Send to my dashboard**. Once a day is plenty.
 - **After each COE bidding result**, type the new Cat A and Cat B prices into the two boxes. They are remembered on each device separately.
 - **Refresh** reloads the latest published listings.
 - Tap a rating chip to filter. Tap a car's name to open it on SGCarMart.
@@ -83,25 +85,26 @@ In the repository: **Actions** > **Scan SGCarMart** > the **...** button (top ri
 
 ## Choosing a search
 
-The bookmark reads whatever search you have open, page by page, up to 10 pages. A focused search is better than a wide one. Based on the research:
+The scanner reads whatever search you have open, all of it, up to 1,000 cars. You do not need to change the results per page or click through pages. The search used for the first live scan, on 17 Nov 2026, was:
 
-| Filter | Set it to | Why |
+`https://www.sgcarmart.com/used-cars/listing?pr2=50000&dp2=16000&fr=2018&cl2=2y&ord=DEP_ASC`
+
+That is: up to S$50,000, depreciation up to S$16,000 a year, registered 2018 or later, COE left up to 2 years, lowest depreciation first. It returned 553 cars.
+
+| Filter | Suggested | Why |
 | --- | --- | --- |
-| Vehicle type | All Passenger Cars | Leaves out vans and trucks, which are not rated |
-| Registration year | 2018 to 2019 | 1 to 3 years of COE left, where depreciation is lowest and little capital is tied up |
-| Price | up to S$50,000 | Covers every car on the shortlist at that age |
+| Price | up to S$50,000 | Covers every car on the research shortlist at that age |
 | Depreciation | up to S$16,000 a year | Removes the clearly expensive ones |
-| Sort | Depreciation (Lowest) | If the search has more than 10 pages, the best ones are read first |
-| Results per page | 100 (bottom of the page) | Fewer pages to read |
+| COE left, or registration year | 1 to 3 years left | Where depreciation is lowest and little capital is tied up |
+| Sort | Depreciation (Lowest) | If the search has more than 1,000 cars, the best ones are read first |
+| Vehicle type | All Passenger Cars (optional) | Vans and trucks are recognised and left unrated anyway |
 
 You can scan several searches one after another, for example a second one for electric cars registered 2022 onwards. Each scan adds to the dashboard. After the first scan the dashboard keeps a link to your last search.
 
-Set the vehicle type on the site. The first results page tells the dashboard which listings are vans; later pages do not, and there it recognises common van and truck names only.
+## What the scanner does and does not do
 
-## What the bookmark does and does not do
-
-- It runs only when you press it, in your own browser, on the SGCarMart search you have open.
-- It reads the result cards on the page, then presses the site's own **Next** button, waits for the next page, and reads that. It pauses at least 3 seconds between pages and stops after 10 pages or 800 cars.
+- It runs only when you click its button, in your own browser, on the SGCarMart search you have open.
+- It asks the site for the same search you have open, 100 cars a page, one page at a time, the way your browser does when you page through results. It pauses at least 3 seconds between pages and stops after 10 pages or 1,000 cars. A 553-car search took 6 requests and 23 seconds.
 - It never opens individual car pages, never logs in, and sends nothing anywhere until you press **Send to my dashboard**. Then it hands the listings to your dashboard only.
 - It does not pretend to be anything it is not: the requests are your browser's ordinary ones.
 
@@ -109,9 +112,13 @@ Set the vehicle type on the site. The first results page tells the dashboard whi
 
 ## If something goes wrong
 
-**Nothing happens when I press the bookmark.** Some sites stop bookmarks from running code. Use the fallback: on your search press Ctrl+S, save the page, and in the dashboard choose the file under **Or add a saved page**. One file per results page. Tell me, and I can look for another route.
+**No green button on my SGCarMart search.** Reload the page. Check `chrome://extensions` shows **SG Car Deals scanner** switched on, and that the folder you extracted is still where it was. The button only appears on used-car search pages.
 
-**The green box says "The site did not show the next page".** The bookmark could not work the site's Next button. What it read so far is kept. Click the next page yourself and press the bookmark again; each press adds that page.
+**Why an extension.** A bookmark version was tried on 17 Nov 2026 and did nothing in your browser, for a reason never found. The extension does the same job and is easier to check. It is built for one dashboard address; to rebuild it for another, run `node scripts/build-extension.mjs https://NAME.github.io/sg-car-deals/`.
+
+**Last resort.** Press Ctrl+S on your search, save the page, and choose the file in the dashboard under **Or add a saved page**. One file per results page.
+
+**The green box says a page "could not be read".** The site refused or timed out on that page. What was read so far is kept and can be sent. Wait a few minutes and scan again; do not press it repeatedly.
 
 **"GitHub rejected the token" or "cannot write to this repository".** Make a new token following step 5 exactly: the repository must be selected and Contents set to Read and write.
 
@@ -142,19 +149,27 @@ Set the vehicle type on the site. The first results page tells the dashboard whi
 
 ## What was tested, and what was not
 
-Tested (34 automated checks, `node --test`, plus headless-browser runs):
+Tested on the live site, 17 Nov 2026, in your own Chrome:
 
-- The page reader against a real SGCarMart results page saved on 14 Nov 2026: all 20 listings read, and the two reading methods agree on every price, depreciation, date, mileage and engine figure.
+- The scanner's code read your search in full: 553 of 553 cars over 6 pages in 23 seconds, every one with price, depreciation, registration date, COE left and vehicle type.
+- "Send to my dashboard" opened the live dashboard, which received all 553 and rated 513 cars (41 vans and trucks left unrated).
+- How the site works was confirmed: result pages are addressed with `page=N`, `limit=100` gives 100 cars a page, and pressing the site's own Next button reloads the whole page.
+
+That run used the scanner's code pasted into the page through a browser tool. The packaged extension runs the same code and was tested separately in a test browser.
+
+Tested in a test browser and by automated checks (34 checks with `node --test`, plus browser runs):
+
+- The packaged extension, loaded into a Chromium browser against a stand-in site built from your real saved page, served under a deliberately strict security policy: button shown, three pages read with pauses, listings handed to the dashboard.
+- Publishing, against a stand-in for GitHub that behaves like the real one.
 - The rating engine against the earlier Python model on 26 real listings: 442 comparisons, no differences.
-- The bookmark, end to end: the real bookmark was run on that real saved page (served to a test browser as if from sgcarmart.com), with a stand-in for the site's Next button. It read 60 cars over 3 pages, waited between pages, handed them to the dashboard, and the dashboard published them to a stand-in for GitHub.
 - The hand-over: listings arrive unchanged, and anything malformed or pointing away from sgcarmart.com is dropped.
 - The dashboard: COE input, filters, search, sorting, saved-page import, offline use, phone layout, and that listing text cannot inject code.
 
 Not tested:
 
-- **The bookmark has not been pressed on the live site.** I cannot reach sgcarmart.com from where I work. Two things could differ there: whether the site lets a bookmark run, and whether its Next button responds to the bookmark's click. Both failures are reported on screen, and the saved-page route covers them.
-- **Publishing has not been tried against the real GitHub**, only a stand-in that behaves the same way.
-- Van recognition by name is a list of common models, not a complete one.
+- **The packaged extension has not been installed in your Chrome yet.** Its code ran live; its packaging did not.
+- **Publishing has not been tried against the real GitHub**, because it needs your token.
+- With several hundred cars loaded, about a third rate Attractive. The thresholds were set on a 26-car sample and may want tightening.
 
 ## Files
 
@@ -163,8 +178,10 @@ Not tested:
 | `index.html`, `app.js`, `styles.css` | The dashboard |
 | `lib/engine.js` | Valuation and rating rules |
 | `lib/parse.js` | Reads an SGCarMart results page |
-| `lib/capture.js`, `lib/bookmarklet.js` | The bookmark |
-| `lib/transfer.js` | Checks listings handed over by the bookmark |
+| `lib/capture.js` | The scanner: reads result pages in your browser |
+| `extension/`, `sg-car-deals-scanner.zip` | The scanner as a Chrome or Edge extension, and the same thing zipped for download |
+| `lib/bookmarklet.js`, `scripts/build-extension.mjs` | Build the extension's script from `lib/parse.js` and `lib/capture.js` |
+| `lib/transfer.js` | Checks listings handed over by the scanner |
 | `lib/store.js` | First-seen dates and price history |
 | `data/listings.json`, `data/status.json` | The published listings |
 | `data/models.json`, `data/price_guide.json` | Reference tables |

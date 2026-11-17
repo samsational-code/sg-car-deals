@@ -90,14 +90,19 @@
   <details class="panel" id="get">
     <summary>Get new listings from SGCarMart</summary>
     <h3 class="step">One click, from your own browser</h3>
+    <p>Set up once, on a computer with Chrome or Edge:</p>
     <ol class="method">
-      <li>On a computer, show your bookmarks bar (Ctrl+Shift+B, or Cmd+Shift+B on a Mac).</li>
-      <li>Drag this button onto the bookmarks bar: <a id="bookmarklet" class="btn drag" href="#" draggable="true">Scan SGCarMart</a> <span id="bookmarklet-msg" class="hint"></span></li>
-      <li>Open your search on SGCarMart<span id="last-search"></span>. Set the filters you want and sort by depreciation, lowest first.</li>
-      <li>Press the <b>Scan SGCarMart</b> bookmark. A green box appears and reads the result pages, up to 10, pausing between pages.</li>
-      <li>Press <b>Send to my dashboard</b> in the green box. This page opens with the cars rated.</li>
+      <li><a href="sg-car-deals-scanner.zip" download>Download the scanner</a>, right-click the file, choose <b>Extract All</b> and extract it into your Documents folder. Leave it there.</li>
+      <li>Type <code>chrome://extensions</code> in the address bar. Switch on <b>Developer mode</b> (top right).</li>
+      <li>Click <b>Load unpacked</b> and choose the <code>sg-car-deals-scanner</code> folder.</li>
     </ol>
-    <p class="hint">The bookmark only reads the search results your browser is showing, and only sends them to this dashboard.</p>
+    <p>Then, each time you want fresh listings:</p>
+    <ol class="method">
+      <li>Open your search on SGCarMart<span id="last-search"></span> and set the filters you want.</li>
+      <li>Click the green <b>Scan for SG Car Deals</b> button at the bottom right of that page. It reads the whole search, 100 cars at a time with a pause in between, up to 1,000 cars.</li>
+      <li>Click <b>Send to my dashboard</b>. This page opens with the cars rated.</li>
+    </ol>
+    <p class="hint">The scanner only reads the search results your browser is showing, and only sends them to this dashboard.</p>
 
     <h3 class="step">Share with your family</h3>
     <p>Listings you scan stay on this device until you publish them. Publishing saves them into your GitHub repository, so everyone who opens this dashboard sees them after about a minute.</p>

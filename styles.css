@@ -130,3 +130,6 @@ footer { color: var(--muted); font-size: 0.78rem; margin-top: 24px; }
 .panel input[type="password"], .panel input[type="text"] { border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; background: var(--bg); font-weight: 400; width: 100%; min-width: 0; }
 .btn.drag { cursor: grab; display: inline-block; padding: 4px 12px; margin: 0 4px; }
 .panel .row { margin-top: 12px; }
+
+code { font-family: ui-monospace, Consolas, monospace; font-size: 0.9em; background: var(--chip); padding: 1px 5px; border-radius: 4px; }
+.panel ol + p { margin-top: 12px; }
